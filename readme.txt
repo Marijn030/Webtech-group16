@@ -15,4 +15,40 @@ we used the website https://www.perfomatix.com/nodejs-coding-standards-and-best-
 --registered users
 
 --table definitions
-CREATE TABLE IF NOT EXISTS...
+CREATE TABLE IF NOT EXISTS movie (
+title TEXT PRIMARY KEY NOT NULL,
+genre TEXT NOT NULL,
+year INTEGER NOT NULL,
+writer TEXT NOT NULL,
+star TEXT NOT NULL,
+poster TEXT NOT NULL,
+trailer TEXT NOT NULL,
+plot TEXT NOT NULL,
+director TEXT NOT NULL 
+);
+
+CREATE TABLE IF NOT EXISTS artist (
+name TEXT PRIMARY KEY NOT NULL,
+birthyear INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS writer (
+artist_name TEXT PRIMARY KEY NOT NULL,
+artist_birthyear INTEGER NOT NULL,
+CONSTRAINT writer_fk_artist FOREIGN KEY (artist_name) 
+REFERENCES artist(name),
+CONSTRAINT writer_fk_artist FOREIGN KEY (artist_birthyear) 
+REFERENCES artist(birthyear)
+);
+
+CREAT TABLE IF NOT EXISTS written (
+
+);
+
+CREATE TABLE IF NOT EXISTS moviescreening (
+
+);
+
+CREATE TABLE IF NOT EXISTS user (
+
+);
