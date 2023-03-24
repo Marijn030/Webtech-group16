@@ -19,30 +19,49 @@ CREATE TABLE IF NOT EXISTS movie (
 title TEXT PRIMARY KEY NOT NULL,
 genre TEXT NOT NULL,
 year INTEGER NOT NULL,
+director TEXT NOT NULL,
 writer TEXT NOT NULL,
 star TEXT NOT NULL,
 poster TEXT NOT NULL,
 trailer TEXT NOT NULL,
-plot TEXT NOT NULL,
-director TEXT NOT NULL 
+plot TEXT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS artist (
+CREATE TABLE IF NOT EXISTS director (
 name TEXT PRIMARY KEY NOT NULL,
 birthyear INTEGER NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS writer (
-artist_name TEXT PRIMARY KEY NOT NULL,
-artist_birthyear INTEGER NOT NULL,
-CONSTRAINT writer_fk_artist FOREIGN KEY (artist_name) 
-REFERENCES artist(name),
-CONSTRAINT writer_fk_artist FOREIGN KEY (artist_birthyear) 
-REFERENCES artist(birthyear)
+CREATE TABLE IF NOT EXISTS directed (
+director_name PRIMARY KEY NOT NULL,
+movies TEXT NOT NULL,
+CONSTRAINT directed_fk_director FOREIGN KEY (director_name) 
+REFERENCES director(name)
 );
 
-CREAT TABLE IF NOT EXISTS written (
+CREATE TABLE IF NOT EXISTS writer (
+name TEXT PRIMARY KEY NOT NULL,
+birthyear INTEGER NOT NULL
+);
 
+CREATE TABLE IF NOT EXISTS written (
+writer_name PRIMARY KEY NOT NULL,
+movies TEXT NOT NULL,
+CONSTRAINT written_fk_writer FOREIGN KEY (writer_name) 
+REFERENCES writer(name)
+);
+
+CREATE TABLE IF NOT EXISTS actor (
+name TEXT PRIMARY KEY NOT NULL,
+birthyear INTEGER NOT NULL,
+photo TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS acted (
+actor_name PRIMARY KEY NOT NULL,
+movies TEXT NOT NULL,
+CONSTRAINT acted_fk_actor FOREIGN KEY (actor_name) 
+REFERENCES actor(name)
 );
 
 CREATE TABLE IF NOT EXISTS moviescreening (
