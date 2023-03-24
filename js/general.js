@@ -244,46 +244,6 @@ h1.appendChild(h1Text);
 let label = document.getElementsByTagName('label')[0];
 header.insertBefore(h1, label);
 
-//create a nav element to add all the links to 
-let nav = document.createElement('nav');
-
-//add a comment in nav
-let navComment = document.createComment('links to the other webpages in the navigator');
-nav.appendChild(navComment);
-
-//function to create a h2 for the nav
-function createh2(link, name, optionalClass) {
-    let h2 = document.createElement('h2');
-    let a = document.createElement('a');
-    a.setAttribute('href', link);
-    if (optionalClass != null) { a.setAttribute('class', optionalClass); }
-    let text = document.createTextNode(name);
-    a.appendChild(text);
-    h2.appendChild(a);
-    return h2;
-}
-
-//add a link to the home page in nav
-nav.appendChild(createh2('index.html', 'Home', null));
-
-//add a link to the characters page in nav
-nav.appendChild(createh2('characters_page.html', 'Characters', null));
-
-//add a link to the production page in nav
-nav.appendChild(createh2('production_page.html', 'Production', null));
-
-//add a link to the review page in nav
-nav.appendChild(createh2('review_page.html', 'Review', null));
-
-//add a link to the store page in nav
-nav.appendChild(createh2('store_page.html', 'Store', null));
-
-//add a link to the short version page in nav
-nav.appendChild(createh2('info.html', 'Short Version', 'link--current-page'));
-
-//add the nav in header
-header.appendChild(nav);
-
 //adding the articles
 let articleGeneralInfo = document.createElement('article');
 var articleCharacterInfo = document.createElement('article');

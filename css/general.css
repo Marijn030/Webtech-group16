@@ -53,7 +53,6 @@ header {
         font-size: 5vw;
     }
 
-/*Figure-likes*/
 img {
     max-width: 100%;
     height: auto;
@@ -67,44 +66,6 @@ figcaption {
     font-style: italic;
 }
 
-/*Home page specific CSS*/
-#section--blurb {
-    font-family: "Trebuchet MS", fantasy;
-}
-
-#home-page__figure--poster {
-    text-align: center;
-    justify-content: center;
-    max-width: 100%;
-    height: auto;
-}
-
-    #home-page__figure--poster img {
-        max-width: 100%;
-        height: auto;
-    }
-
-#section--blurb h4 {
-    text-align: center;
-}
-
-/*Production specific*/
-p.production-source {
-    font-size: 2vw;
-}
-
-    p.production-source a {
-        font-size: 2vw;
-    }
-
-/*Store specific CSS*/
-img.merchandise-picture {
-    max-width: 100%;
-    height: auto;
-    border: 0.5em solid #303030;
-    padding: 0%;
-}
-
 table, th, td {
     border: 1px solid black;
 }
@@ -113,64 +74,9 @@ table {
     margin: 1%;
 }
 
-figcaption.merchandise-caption {
-    text-align: center;
-}
-
-h1.store-title, h2.store-title {
-    text-shadow: 0px 0px 0.5em red;
-    text-align: center;
-}
-
-td.merch-price-table__price-merchandise, th.merch-price-table__price-header, td.ticket-price-table__price-bundle, th.ticket-price-table__price-header {
-    text-shadow: 0px 0px 0.5em blue;
-}
-
-th.ticket-price-table__bundle-header, td.ticket-price-table__bundle-item, th.merch-price-table__merchandise-header, td.merch-price-table__merchandise-item {
-    text-shadow: 0px 0px 0.5em red;
-}
-
-#merch-price-table--disabled {
-    display: none
-}
-
-p.store-text--small em {
-    font-size: 3.5vw;
-}
-
-p.store-text--small {
-    text-align: center;
-}
-
-
-#merch-container {
-    display: grid;
-    grid-template: 1fr / 1fr;
-}
-
-#price-container {
-    display: flex;
-    justify-content: center;
-}
-
-figure.merchandise-display {
-    max-width: 100%;
-    height: auto;
-}
-
-
-
-
 /*Screen specific*/
 @media only screen and (max-width:600px) {
-    /*CSS star for the review page*/
-    .star {
-        background: gold;
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        display: inline-block;
-        height: 5vw;
-        width: 5vw;
-    }
+
 }
 
 @media only screen and (max-width: 425px ) {
@@ -178,66 +84,23 @@ figure.merchandise-display {
         font-size: 4.5vw;
     }
 
-    p.store-text--small {
-        font-size: 2.25vw;
-    }
-
     nav h2 a {
         font-size: 3vw;
     }
-
-    p.production-source {
-        font-size: 3.5vw;
-    }
-
-        p.production-source a {
-            font-size: 3.5vw;
-        }
 }
 
 @media only screen and (max-width: 300px ) {
     * {
         font-size: 5vw;
     }
-
-    p.store-text--small {
-        font-size: 2.5vw;
-    }
 }
 
 @media only screen and (min-width:601px) {
-    /*CSS star for the review page*/
-    .star {
-        background: gold;
-        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-        display: inline-block;
-        height: 5vw;
-        width: 5vw;
-    }
+
 }
 
 @media only screen and (min-width: 768px ) {
     * {
         font-size: 2vw;
-    }
-
-    p.store-text--small em {
-        font-size: 1.5vw;
-    }
-
-    #merch-container {
-        display: grid;
-        grid-template: 1fr / 1fr 1fr;
-    }
-
-    #ticket-price-table {
-        height: auto;
-        width: 50%;
-    }
-
-    #merch-price-table--disabled {
-        display: inline-table;
-        height: auto;
-        width: 50%;
     }
 }
