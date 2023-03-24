@@ -15,6 +15,8 @@ we used the website https://www.perfomatix.com/nodejs-coding-standards-and-best-
 --registered users
 
 --table definitions
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE IF NOT EXISTS movie (
 title TEXT PRIMARY KEY NOT NULL,
 genre TEXT NOT NULL,
@@ -47,9 +49,33 @@ photo TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS moviescreening (
-
+title TEXT NOT NULL,
+date DATE NOT NULL,
+time TIME NOT NULL,
+PRIMARY KEY(title, date, time)
 );
 
 CREATE TABLE IF NOT EXISTS user (
+name TEXT PRIMARY KEY NOT NULL,
+email TEXT NOT NULL,
+login TEXT NOT NULL,
+password TEXT NOT NULL,
+address TEXT NOT NULL,
+creditcard TEXT NOT NULL,
+);
 
+CREATE TABLE IF NOT EXISTS orderhistory (
+user_name TEXT NOT NULL,
+moviescreening_title TEXT NOT NULL,
+moviescreening_date DATE NOT NULL,
+moviescreening_time TIME NOT NULL,
+PRIMARY KEY (user_name, moviescreening_title, moviescreening_date, moviescreening_time),
+CONSTRAINT orderhistory_fk_user FOREIGN KEY (user_name) 
+REFERENCES user(name),
+CONSTRAINT orderhistory_fk_user FOREIGN KEY (moviescreening_title) 
+REFERENCES moviescreening(title),
+CONSTRAINT orderhistory_fk_moviescreening FOREIGN KEY (moviescreening_date) 
+REFERENCES moviescreening(date),
+CONSTRAINT orderhistory_fk_moviescreening FOREIGN KEY (moviescreening_time) 
+REFERENCES moviescreening(time)
 );
