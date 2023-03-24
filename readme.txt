@@ -29,39 +29,21 @@ plot TEXT NOT NULL
 
 CREATE TABLE IF NOT EXISTS director (
 name TEXT PRIMARY KEY NOT NULL,
-birthyear INTEGER NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS directed (
-director_name PRIMARY KEY NOT NULL,
-movies TEXT NOT NULL,
-CONSTRAINT directed_fk_director FOREIGN KEY (director_name) 
-REFERENCES director(name)
+birthyear INTEGER NOT NULL,
+movies TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS writer (
 name TEXT PRIMARY KEY NOT NULL,
-birthyear INTEGER NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS written (
-writer_name PRIMARY KEY NOT NULL,
-movies TEXT NOT NULL,
-CONSTRAINT written_fk_writer FOREIGN KEY (writer_name) 
-REFERENCES writer(name)
+birthyear INTEGER NOT NULL,
+movies TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS actor (
 name TEXT PRIMARY KEY NOT NULL,
 birthyear INTEGER NOT NULL,
-photo TEXT NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS acted (
-actor_name PRIMARY KEY NOT NULL,
 movies TEXT NOT NULL,
-CONSTRAINT acted_fk_actor FOREIGN KEY (actor_name) 
-REFERENCES actor(name)
+photo TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS moviescreening (
