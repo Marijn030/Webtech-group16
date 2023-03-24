@@ -1,0 +1,106 @@
+/*General CSS that applies to all screen sizes and devices*/
+* {
+    color: black;
+    font-family: Lucida, sans-serif;
+    font-size: 3vw;
+    background-color: rgb(64, 109, 126);
+}
+
+sup {
+    font-size: 1vw;
+}
+
+/*Links*/
+nav a {
+    color: rgb(7, 7, 117);
+    text-decoration: none;
+}
+
+    nav a:hover {
+        color: rgb(164, 129, 206);
+        text-decoration: underline;
+    }
+
+a.link-external {
+    color: purple;
+}
+
+    a.link-external:hover {
+        color: orangered;
+    }
+
+nav a.link--current-page {
+    color: rgb(207, 144, 28);
+}
+
+/*Big top elements*/
+nav h2 a {
+    text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+}
+
+    header h1 {
+        font-size: 5vw;
+    }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figcaption {
+    text-align: center;
+    font-style: italic;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    margin: 1%;
+}
+
+/*Screen specific*/
+@media only screen and (max-width:600px) {
+
+}
+
+@media only screen and (max-width: 425px ) {
+    * {
+        font-size: 4.5vw;
+    }
+
+    nav h2 a {
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (max-width: 300px ) {
+    * {
+        font-size: 5vw;
+    }
+}
+
+@media only screen and (min-width:601px) {
+
+}
+
+@media only screen and (min-width: 768px ) {
+    * {
+        font-size: 2vw;
+    }
+}
