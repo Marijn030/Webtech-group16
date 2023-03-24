@@ -8,7 +8,7 @@ Logins and passwords of all registered users.
 The SQL definition of your database (the CREATE TABLE statements).
 
 We are Group 16
-Our names are Marijn Luime(1921142), Jonathan van Dijk(4890477), Taylan Batman(...)
+Our names are Marijn Luime(1921142), Jonathan van Dijk(4890477), Taylan Batman(9896392)
 See our website: http://webtech.science.uu.nl/group16/
 --explain
 --registered users
