@@ -11,6 +11,7 @@ We are Group 16
 Our names are Marijn Luime(1921142), Jonathan van Dijk(4890477), Taylan Batman(9896392)
 See our website: http://webtech.science.uu.nl/group16/
 --explain
+we used the website https://www.perfomatix.com/nodejs-coding-standards-and-best-practices/ to base our behaviour and the design of our backend
 --registered users
 
 --table definitions
