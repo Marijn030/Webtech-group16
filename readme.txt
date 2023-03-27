@@ -79,3 +79,26 @@ REFERENCES moviescreening(date),
 CONSTRAINT orderhistory_fk_moviescreening FOREIGN KEY (moviescreening_time) 
 REFERENCES moviescreening(time)
 );
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('John Wick', 'action-thriller', 2014, 'Chad Stahelski', 'Derek Kolstad', 'Keanu Reeves-Michael Nycvist-Alfie Allen-Adrianne Palicki-Bridget Moynahan', '../images/john_wick_movieposter.jpg', 'https://www.youtube.com/embed/2AUmvWm5ZDQ', 'Legendary assassin John Wick 
+(Keanu Reeves) retired from his violent career after marrying the love of his life. Her sudden death leaves John in deep mourning. When sadistic mobster Iosef Tarasov (Alfie Allen) 
+and his thugs steal John's prized car and kill the puppy that was a last gift from his wife, John unleashes the remorseless killing machine within and seeks vengeance. Meanwhile, 
+Iosef's father (Michael Nyqvist) -- John's former colleague -- puts a huge bounty on John's head. (Source: John Wick page on Rotten Tomatoes)');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('John Wick: Chapter 2', 'action-thriller', 2017, 'Chad Stahelski', 'Derek Kolstad', 'Keanu Reeves-Ruby Rose-Laurence Fishburne-Ian McShane-Riccardo Scamarcio', 'https://m.media-amazon.com/images/M/MV5BMjE2NDkxNTY2M15BMl5BanBnXkFtZTgwMDc2NzE0MTI@._V1_.jpg',
+'https://www.youtube.com/embed/ChpLV9AMqm4', 'Bound by an inescapable blood debt to the Italian crime lord, Santino D'Antonio, and with his precious 1969 Mustang still stolen, 
+John Wick--the taciturn and pitiless assassin who thirsts for seclusion--is forced to visit Italy to honour his promise. But, soon, the Bogeyman will find himself dragged into 
+an impossible task in the heart of Rome's secret criminal society, as every killer in the business dreams of cornering the legendary Wick who now has an enormous price on his head. 
+Drenched in blood and mercilessly hunted down, John Wick can surely forget a peaceful retirement as no one can make it out in one piece.';
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('John Wick: Chapter 3 - Parabellum', 'action-thriller', 2019, 'Chad Stahelski', 'Derek Kolstad', 'Keanu Reeves-Halle Berry-Laurence Fishburne-Ian Mcshane-Mark Dacascos', 'https://image.tmdb.org/t/p/original/jeNTqOnux7KSulznSh4UdiDlfmV.jpg',
+'https://www.youtube.com/embed/M7XM597XO94', 'In this third installment of the adrenaline-fueled action franchise, skilled assassin John Wick (Keanu Reeves) returns with 
+a $14 million price tag on his head and an army of bounty-hunting killers on his trail. After killing a member of the shadowy international assassin's guild, the High Table, 
+John Wick is excommunicado, but the world's most ruthless hit men and women await his every turn.';
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('John Wick: Chapter 3', 'action-thriller', 2023, 'Chad Stahelski', 'Derek Kolstad', 'Keanu Reeves-Donnie Yen-Scott Adkins-Ian Mcshane-Bill Skarsgård', 'https://assets-prd.ignimgs.com/2023/02/08/jw4-2025x3000-online-character-1sht-keanu-v187-1675886090936.jpg',
+'https://www.youtube.com/embed/qEVUtrk8_B4', 'John Wick uncovers a path to defeating The High Table. But before he can earn his freedom, Wick must face off against a new enemy with powerful alliances across the globe and forces that turn old friends into foes.';
