@@ -12,10 +12,12 @@ app.get("/", function(req, res){
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         return res.end();
+        //can be visited at http://localhost:8016
     });
 });
 
 var staticPath = path.join(__dirname, "/static");
-app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG IS NOT STATIC BECAUSE IT IS TAKEN FROM DATABASE
-
+app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB. 
+//However tag-only HTML is considered static, since the tags themselves are consistent.
+//can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
 app.listen(8016);
