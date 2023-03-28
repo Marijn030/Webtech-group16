@@ -4,6 +4,7 @@ var app = express();
 var morgan = require('morgan');
 var path = require("path");
 var fs = require("fs");
+var url = require('url');
 
 //adding lisening
 app.get("/", function(req, res){
