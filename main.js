@@ -16,6 +16,6 @@ app.get("/", function(req, res){
 });
 
 var staticPath = path.join(__dirname, "/static");
-app.use(express.static(staticPath));
+app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG IS NOT STATIC BECAUSE IT IS TAKEN FROM DATABASE
 
 app.listen(8016);
