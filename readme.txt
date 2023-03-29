@@ -160,3 +160,107 @@ VALUES ('Harry Potter and the Deathly Hallows - Part 2', 'fantasy', 2011, 'David
 is at Hogwarts, they flee there as soon as possible, but Voldemort instantly finds out about their mission. The battle is drawn at Hogwarts as many people fight to protect Harry. 
 Harry then realizes that people are dying constantly for his mistakes and then eventually fights Voldemort for the last time. Along the way, crucial secrets are unravelled, 
 and the mysterious, but legendary, Deathly Hallows reappear.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('The Fast and the Furious', 'action', 2001, 'Rob Cohen', 'Gary Scott Thompson', 'Paul Walker-Vin Diesel-Michelle Rodriguez-Jordana Brewster-Rick Yune', 'https://i.ebayimg.com/images/g/v7AAAOSwstxVCESm/s-l1600.jpg',
+'https://www.youtube.com/embed/2TAOizOnNPo', 'Los Angeles street racer Dominic Toretto falls under the suspicion of the LAPD as a string of high-speed electronics truck robberies 
+rocks the area. Brian O'Connor, an officer of the LAPD, joins the ranks of Toretto's highly skilled racing crew undercover to convict Toretto. However, O'Connor finds himself both 
+enamored with this new world and in love with Toretto's sister, Mia. As a rival racing crew gains strength, O'Connor must decide where his loyalty really lies.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('2 Fast 2 Furious', 'action', 2003, 'John Singleton', 'Gary Scott Thompson-Michael Brandt-Derek Haas', 'Paul Walker-Tyrese Gibson -Devon Aoki-Chris Bridges-Eva Mendes', 'https://i.etsystatic.com/35330351/r/il/52d287/3938270029/il_570xN.3938270029_scrh.jpg',
+'https://www.youtube.com/embed/ZZGkV_xWGw4', 'Now an ex-cop , on the run ,Brian O'Connor hooks into outlaw street racing. When the Fed's strong arm him back O'Connor's no rules 
+win-or-die skills are unleashed against an international drug Lord . With his velocity-addicted buddy riding shotgun ,and a drop dead- gorgeous undercover agent dialing up the heat, 
+2 fast 2 furious accelerates the action into a desperate race for survival, justice ... and a mind - blowing jaw dropping speed!');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('The Fast and the Furious: Tokyo Drift', 'action', 2006, 'Justin Lin', 'Chris Morgan', 'Lucas Black-Sung Kang-Brian Tee-Nathalie Kelley-Nikki Griffin', 'https://i.ebayimg.com/images/g/Cw8AAMXQobdQ7Pmy/s-l1600.jpg',
+'https://www.youtube.com/embed/p8HQ2JLlc4E', 'Sean Boswell, an Alabama teenager with a record for street racing, moves to his father's resident city of Tokyo, 
+Japan to avoid a prison sentence in America. Boswell quickly falls in love with the world of drift racing in Tokyo's underground and a Japanese girl named Neela. 
+However, Boswell's presence and growing talent for drifting unsettles the Japanese Mafia, which makes thousands of dollars from the sport. Confrontations arise, 
+and Sean is faced with a simple decision: drift or die.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('Fast & Furious', 'action', 2009, 'Justin Lin', 'Chris Morgan', 'Vin Diesel-Paul Walker-Michelle Rodriguez-Jordana Brewster-Sung Kang', 'https://static.wikia.nocookie.net/fastandfurious/images/b/bc/Fast_Four_Poster.jpg/revision/latest?cb=20200323093212',
+'https://www.youtube.com/embed/k98tBkRsGl4', 'Heading back to the streets where it all began, two men rejoin two women to blast muscle, 
+tuner and exotic cars across Los Angeles and floor through the Mexican desert. When a crime brings them back to L.A., 
+fugitive ex-con Dom Toretto reignites his feud with agent Brian O'Connor. But as they are forced to confront a shared enemy, 
+Dom and Brian must give in to an uncertain new trust if they hope to outmaneuver him. And from convoy heists to precision tunnel crawls across international lines, 
+two men will find the best way to get revenge: push the limits of what's possible behind the wheel.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('Fast Five', 'action', 2011, 'Justin Lin', 'Chris Morgan', 'Elsa Pataky-Paul Walker-Vin Diesel-Dwayne Johnson-Jordana Brewster', 'https://cdn.shopify.com/s/files/1/1416/8662/products/fast_five_original_film_art_1_spo_5000x.jpg?v=1562539730',
+'https://www.youtube.com/embed/vcn2GOuZCKI', 'Former agent Brian O'Conner and his girlfriend Mia Toretto rescue her brother Dominic Toretto during transportation to prison, 
+and they flee to Rio de Janeiro. They rob a car from custody and find that the powerful drug lord Hernan Reyes has US$ 100,000 in a safe located inside the police station, 
+protected by corrupt policeman. Dominic invites his skilled crew to steal the dirty money and achieve their freedom, moving to a country without extradition to the USA. 
+Meanwhile the tough FBI agent Luke Hobbs comes to Brazil with an elite force to arrest Dominic and Brian.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('Fast & Furious 6', 'action', 2013, 'Justin Lin', 'Chris Morgan', 'Paul Walker-Vin Diesel-Dwayne Johnson-Michelle Rodriguez-Jordana Brewster', 'https://i.etsystatic.com/35330351/r/il/a740ae/3957977087/il_fullxfull.3957977087_8qhd.jpg',
+'https://www.youtube.com/embed/dKi5XoeTN0k', 'Luke Hobbs, the criminal tracer has been tracking a man named Shaw who's a former military man who headed a mobile tactical unit. 
+And when Hobbs finally gets a lead on him, he decides to recruit Dominic Toretto to help him get him. He goes to see Dominic and tells him that his girlfriend, 
+Letty whom he thought was dead, is alive and part of Shaw's crew. So Dom calls Brian, Roman. Han, Tej and Gisele to help him. 
+And they go to where they think Shaw will make his next move in London. When Hobbs makes his move, they learn that Shaw played them and they try to get him but he's too good.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('Fast & Furious 7', 'action', 2015, 'James Wan', 'Chris Morgan', 'Paul Walker-Cody Walker-Vin Diesel-Jason Statham-Michelle Rodriguez', 'https://media.s-bol.com/A8r0Mq3n3p1p/NW9x22/843x1200.jpg',
+'https://www.youtube.com/embed/yISKeT6sDOg', 'Dominic and his crew thought they'd left the criminal mercenary life behind. They'd defeated international terrorist Owen Shaw and 
+went their separate ways. But now, Shaw's brother, Deckard Shaw, is out killing the crew one by one for revenge. Worse, a Somalian terrorist called Jakarde and 
+a shady government official called "Mr. Nobody" are both competing to steal a computer terrorism program called "God's Eye," that can turn any technological device into a weapon. 
+Torretto must reconvene with his team to stop Shaw and retrieve the God's Eye program while caught in a power struggle between the terrorist and the United States government.');
+
+INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
+VALUES ('The Fate of the Furious', 'action', 2017, 'Felix Gary Gray', 'Chris Morgan', 'Vin Diesel-Dwayne Johnson-Jason Statham-Michelle Rodriguez-Tyrese Gibson', 'https://m.media-amazon.com/images/M/MV5BMjMxODI2NDM5Nl5BMl5BanBnXkFtZTgwNjgzOTk1MTI@._V1_.jpg',
+'https://www.youtube.com/embed/JwMKRevYa_M', 'The family has been doing their normal thing. Everything has been cool with them as it always has. All of a sudden, 
+a mysterious decoy lured Dominic Toretto and enthralled him to the state of betrayal. He betrayed his family and set them to face trials they never imagined to face alone without Dom.'); 
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Chad Stahelski', 1968, 'John Wick-John Wick: Chapter 2-John Wick: Chapter 3');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Chris Columbus', 1958, 'Home Alone-Percy Jackson & the Olympians: The Lightning Thief-Pixels');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Alfonso Cuarón', 1961, 'Children of Men-Gravity-Roma');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Mike Newell', 1942, 'Pushing Tin-Prince of Persia: The Sands of Time-Great Expectations');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('David Yates', 1963, 'The Legend of Tarzan- The Fantastic Beasts and Where to Find Them-Fantastic Beasts: The Crimes of Grindelwald');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Rob Cohen', 1949, 'Dragonheart-Daylight-The Skulls');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('John Singleton', 1968, 'Boyz n the Hood-Higher Learning-Shaft');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Justin Lin', 1971, 'Annapolis-Fast-Star Trek: Beyond');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('James Wan', 1977, 'Saw-Dead Silence-Aquaman');
+
+INSERT INTO director (name, birthyear, movies)
+VALUES ('Felix Gary Gray', 1969, 'A Man Apart-Be Cool-Man in Black: International');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('Derek Kolstad', 1974, 'The Package-Nobody-Die Hart');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('JK Rowling', 1965, 'Fantastic Beasts and Where to Find Them-Fantastic Beasts: The Crimes of Grindelwald-Fantastic Beasts: The Secrets of Dumbledore');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('Gary Scott Thompson', 1959, 'Split Second-88 Minutes-Fast');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('Michael Brandt', 1958, 'Wanted-The Double-Overdrive');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('Derek Haas', 1970, 'Catch That Kid-Wanted-The Double');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('Chris Morgan', 1970, 'Wanted-Fast-47 Ronin');
+
+INSERT INTO writer (name, birthyear, movies)
+VALUES ('Chris Morgan', 1970, 'Wanted-Fast-47 Ronin');
