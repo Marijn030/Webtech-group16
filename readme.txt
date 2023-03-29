@@ -342,3 +342,57 @@ VALUES ('Ralph Fiennes', 1962, 'Spectre-No Time to Die-The Menu', 'https://hips.
 
 INSERT INTO actor (actorname, birthyear, movies, photo)
 VALUES ('Alan Rickman', 1946, 'Die Hard-Galaxy Quest-Eye in the Sky', 'https://i.ndtvimg.com/i/2016-01/snape_640x480_71452776743.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Paul Walker', 1973, 'Fast-Takers-Hours', 'https://static.onecms.io/wp-content/uploads/sites/6/2013/12/paul-walker-fast-and-furious.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Vin Diesel', 1967, 'Fast-The Last Witch Hunter-Bloodshot', 'https://cdn.britannica.com/97/194197-050-5BD88874/Vin-Diesel-The-Fast-and-the-Furious.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Michelle Rodriguez', 1978, 'Fast-Machete Kills-Widows', 'https://www.indiewire.com/wp-content/uploads/2021/05/michelle-rodriguez.png?w=780');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Jordana Brewster', 1980, 'The Faculty-Annapolis-Home Sweet Hell', 'https://media.vanityfair.com/photos/5d177da6734e1f0008f96136/master/w_2560%2Cc_limit/fast-9-jordana-brewster.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Rick Yune', 1971, 'Die Another Day-Ninja Assassin-Olympus Has Fallen', 'https://i.pinimg.com/736x/d2/09/d1/d209d171e319ee2cd27834c9f5823883.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Tyrese Gibson', 1978, 'Baby Boy-Transformers-Morbius', 'https://m.media-amazon.com/images/M/MV5BMTQ5MjcxNjI3MV5BMl5BanBnXkFtZTYwMzQ3NTE3._V1_.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Devon Aoki', 1982, 'Death of a Dinasty-Sin City-War', 'https://m.media-amazon.com/images/M/MV5BMTg0MTAzNDE0MF5BMl5BanBnXkFtZTYwODU3NTE3._V1_.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Chris Bridges', 1977, 'Crash-Ride-John Henry', 'https://film-book.com/wp-content/uploads/2020/11/ludacris-fast-and-furious-01-700x400-1.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Eva Mendes', 1974, 'Hitch-The Other Guys-The Place Beyond the Pines', 'https://www.aceshowbiz.com/images/news/eva-mendes-rumored-to-return-for-furious-8.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Lucas Black', 1982, 'Sling-Friday Night Lights-Blade Legion', 'https://dvdmedia.ign.com/dvd/image/article/734/734756/the-fast-and-the-furious-tokyo-drift-20060922070255505-000.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Sung Kang', 1972, 'Better Luck Tomorrow-Bullet to the Head-Snakehead', 'https://upload.wikimedia.org/wikipedia/en/3/3a/Han_Lue.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Brian Tee', 1977, 'The Wolverine-No Tears for the Dead-The Beautiful Ones', 'https://static.wikia.nocookie.net/fastandfurious/images/8/8a/Brian-Tee.jpg/revision/latest?cb=20150507194336');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Nathalie Kelley', 1985, 'Loaded-Infiltrators-The Baker and the Beauty', 'https://static.wikia.nocookie.net/fastandfurious/images/5/56/Neela_1.jpg/revision/latest?cb=20130617212549');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Nikki Griffin', 1978, 'The Dukes of Hazard-Monster Night-The Forgotten Ones', 'https://static.wikia.nocookie.net/fastandfurious/images/0/09/F3_Cindy_Profile.png/revision/latest?cb=20201009073526');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Elsa Pataky', 1976, 'Tidelands-Interceptor-Poker Face', 'https://media1.popsugar-assets.com/files/thumbor/5a8txKytKdzlAIkAN69FmZ7ur_4/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2017/04/13/734/n/1922283/eb26e1a3f28a3ff5_MCDSAHA_EC208_H.JPG');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Dwayne Johnson', 1972, 'Jumanju-Jungle Cruise-Black Adam', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2017%2F12%2Fdwayne-2000.jpg&q=60');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Cody Walker', 1988, 'The Mine-USS Indianapolis: Men of Courage', 'https://cf-images.us-east-1.prod.boltdns.net/v1/static/219646971/b044bda7-ed55-4071-af89-8ee5e34188c2/adc66753-2c16-4ef3-8239-c485bfaaeff8/1280x720/match/image.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Jason Statham', 1967, 'The Transporter-The Expendables-Cash Truck', 'https://static.onecms.io/wp-content/uploads/sites/6/2015/04/jason-statham-2000.jpg');
