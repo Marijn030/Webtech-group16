@@ -1,29 +1,12 @@
-var express = require('express');
-var app = express();
-var file = "cinema.db";
-var sqlite3 = require("sqlite3");
-var db = new sqlite3.Database(file);
-
-var movieDirector;
-
-db.serialize(function () {
-    var name;
-    db.each("SELECT directorname FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
-        name = row.directorname;
-    });
-    var year;
-    db.each("SELECT birthyear FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
-        year = row.birthyear;
-    });
-    var moviesDirected;
-    db.each("SELECT movies FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
-        moviesDirected = row.movies;
-    });
-    var movies = moviesDirected.Split("-");
-    movieDirector = new director(name, year, movies); 
-})
-
-db.close();
+fetch("/moviefastandfurious1.html").then(c => c.json()).then(info => {
+   console.log(info);
+   for(i=0;i<info.length;i++) {
+    var directors = [info[0]];
+    var writers = [info[1]];
+    var actors= info[2];
+    var movie = info[3];
+   }
+});
 
 //class for the whole movie
 class movie {
