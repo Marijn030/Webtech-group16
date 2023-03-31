@@ -2,7 +2,7 @@ var file = "cinema.db";
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(file);
 
-var director;
+var movieDirector;
 
 db.serialize(function () {
     var name;
@@ -13,11 +13,12 @@ db.serialize(function () {
     db.each("SELECT birthyear FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
         year = row.birthyear;
     });
-
     var moviesDirected;
     db.each("SELECT movies FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
         moviesDirected = row.movies;
     });
+    var movies = moviesDirected.Split("-");
+    movieDirector = new director(name, year, movies); 
 })
 
 db.close();
@@ -91,7 +92,7 @@ var mainWriter = new writer("Derek Kolstad", 1974, ["One in the Chamber", "The P
 var johnWickActors = [protagonist, badGuy, badTeen, femaleChallenger, deadWife];
 var johnWickWriters = [mainWriter];
 
-var movieJohnWick = new movie("John Wick", "action-thriller", 2014, wickDirector, johnWickWriters,
+var movieJohnWick = new movie("John Wick", "action-thriller", 2014, movieDirector, johnWickWriters,
     johnWickActors, "../images/john_wick_movieposter.jpg",
     "https://www.youtube.com/embed/2AUmvWm5ZDQ",
     "Legendary assassin John Wick (Keanu Reeves) retired from his violent career after marrying the love of his life. Her sudden death leaves John in deep mourning. When sadistic mobster Iosef Tarasov (Alfie Allen) and his thugs steal John's prized car and kill the puppy that was a last gift from his wife, John unleashes the remorseless killing machine within and seeks vengeance. Meanwhile, Iosef's father (Michael Nyqvist) -- John's former colleague -- puts a huge bounty on John's head. (Source: John Wick page on Rotten Tomatoes)");
