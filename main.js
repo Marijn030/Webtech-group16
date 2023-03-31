@@ -16,6 +16,14 @@ app.get("/", function(req, res){
         //can be visited at http://localhost:8016
     });
 });
+app.get("/static/web_pages/moviefastandfurious1", function (req, res) {
+    fs.readFile('static/web_pages/index.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+        //can be visited at http://localhost:8016
+    });
+});
 
 var staticPath = path.join(__dirname, "/static");
 app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB. 
