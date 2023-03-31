@@ -22,6 +22,14 @@ app.get("/", function(req, res){
         //can be visited at http://localhost:8016
     });
 });
+app.get("/static/web_pages/userprofile.html", function (req, res) {
+    fs.readFile('static/web_pages/userprofile.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+        //can be visited at http://localhost:8016
+    });
+});
 app.get("/static/web_pages/moviefastandfurious1.html", function (req, res) {
     fs.readFile('static/web_pages/moviefastandfurious1.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
