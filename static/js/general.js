@@ -1,3 +1,27 @@
+var file = "cinema.db";
+var sqlite3 = require("sqlite3").verbose();
+var db = new sqlite3.Database(file);
+
+var director;
+
+db.serialize(function () {
+    var name;
+    db.each("SELECT directorname FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
+        name = row.directorname;
+    });
+    var year;
+    db.each("SELECT birthyear FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
+        year = row.birthyear;
+    });
+
+    var moviesDirected;
+    db.each("SELECT movies FROM director WHERE directorname LIKE 'Chad Stahelski'", function (err, row) {
+        moviesDirected = row.movies;
+    });
+})
+
+db.close();
+
 //class for the whole movie
 class movie {
     constructor(title, genre, year, director, writerArray, actorArray, poster, trailer, plot) {
