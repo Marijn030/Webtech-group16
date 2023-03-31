@@ -21,6 +21,7 @@ nav ul {
     padding: 0;
     overflow: hidden;
     background-color: gray;
+    max-width: 100%;
   }
   
 nav ul li {
