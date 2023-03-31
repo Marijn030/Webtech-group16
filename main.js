@@ -7,6 +7,12 @@ var fs = require("fs");
 var url = require('url');
 var sqlite3 = require("sqlite3");
 
+function logger(req, res, next) {
+    console.log('%s %s', req.method, req.url);
+    next();
+}
+app.use(logger);
+
 //adding lisening
 app.get("/", function(req, res){
     fs.readFile('static/web_pages/index.html', function(err, data) {
