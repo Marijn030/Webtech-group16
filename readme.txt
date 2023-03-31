@@ -130,7 +130,7 @@ Convicted murderer Sirius Black has escaped from the wizarding prison Azkaban. B
 and he is after Harry to avenge Voldemort and finish the job. But not everything is what it seems, and inside of Hogwarts there may just be a traitor.');
 
 INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
-VALUES ('Harry Potter and the Goblet of Fire', 'fantasy', 2005, 'Mike Newell', 'JK Rowling', 'Daniel Radcliffe-Emma Watson-Rupert Grint-Robert Pattinson-Ralp Fiennes', 'https://static.wikia.nocookie.net/qghficsimjkaeibhfztnpjrqiezhzuadzsjxwpnxusefbthfes/images/4/4a/35FFD453-DFDD-4C2C-93C2-FDE66CCB14D6.webp/revision/latest?cb=20210812224339',
+VALUES ('Harry Potter and the Goblet of Fire', 'fantasy', 2005, 'Mike Newell', 'JK Rowling', 'Daniel Radcliffe-Emma Watson-Rupert Grint-Robert Pattinson-Ralph Fiennes', 'https://static.wikia.nocookie.net/qghficsimjkaeibhfztnpjrqiezhzuadzsjxwpnxusefbthfes/images/4/4a/35FFD453-DFDD-4C2C-93C2-FDE66CCB14D6.webp/revision/latest?cb=20210812224339',
 'https://www.youtube.com/embed/3EGojp4Hh6I', 'Harry Potter returns to Hogwarts for his fourth year, where the Triwizard Tournament is soon due to begin. 
 Students must be over seventeen to enter, with the winner receiving eternal glory. Harry cannot enter it this year, or can he. When his name is read out from the Goblet of Fire, 
 everyone assumes that Harry has cheated. Harry insists that he never placed his name in there, with someone else behind it. But who? Harry must now survive through dragons, 
@@ -139,20 +139,20 @@ sea creatures and a terrifying maze, all before coming face-to-face with a parti
 INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
 VALUES ('Harry Potter and the Order of the Phoenix', 'fantasy', 2007, 'David Yates', 'JK Rowling', 'Daniel Radcliffe-Emma Watson-Rupert Grint-Robbie Coltrane-Ralph Fiennes', 'https://m.media-amazon.com/images/M/MV5BOTA3MmRmZDgtOWU1Ny00ZDc5LWFkN2YtNzNlY2UxZmY0N2IyXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_.jpg',
 'https://www.youtube.com/embed/y6ZW7KXaXYk', 'After a disastrous summer with the Dursleys, including an encounter with the Dementors, Harry (Daniel Radcliffe) is shunned by 
-friends upon returning to Hogwarts, after the return of Lord Voldemort (Ralph Fiennes) and no one believes him. He starts his fifth year while new Defense Against the 
-Dark Arts teacher, Professor Dolores Jane Umbridge (Imelda Staunton) refuses to teach them defensive spells while refuting Harrys claims of the Dark Lords return. 
-So Harry sets out, with Ron (Rupert Grint) and Hermione (Emma Watson), to start up "Dumbledores Army" to battle evil forces and prepare the fellow young witches and 
+friends upon returning to Hogwarts, after the return of Lord Voldemort and no one believes him. He starts his fifth year while new Defense Against the 
+Dark Arts teacher, Professor Dolores Jane Umbridge refuses to teach them defensive spells while refuting Harrys claims of the Dark Lords return. 
+So Harry sets out, with Ron and Hermione, to start up "Dumbledores Army" to battle evil forces and prepare the fellow young witches and 
 wizards for the extraordinary journey that lies ahead.');
 
 INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
 VALUES ('Harry Potter and the Half-Blood Prince', 'fantasy', 2009, 'David Yates', 'JK Rowling', 'Daniel Radcliffe-Emma Watson-Rupert Grint-Alan Rickman-Tom Felton', 'https://m.media-amazon.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_.jpg',
 'https://www.youtube.com/embed/tAiy66Xrsz4', 'After a disastrous summer with the Dursleys, including an encounter with the Dementors, Harry is shunned by friends upon returning to 
-Hogwarts, after the return of Lord Voldemort (Ralph Fiennes) and no one believes him. He starts his fifth year while new Defense Against the Dark Arts teacher, 
+Hogwarts, after the return of Lord Voldemort and no one believes him. He starts his fifth year while new Defense Against the Dark Arts teacher, 
 Professor Dolores Jane Umbridge refuses to teach them defensive spells while refuting Harrys claims of the Dark Lords return. So Harry sets out, with Ron and Hermione, 
 to start up "Dumbledores Army" to battle evil forces and prepare the fellow young witches and wizards for the extraordinary journey that lies ahead.');
 
 INSERT INTO movie (title, genre, year, director, writer, actor, poster, trailer, plot)
-VALUES ('Harry Potter and the Deathly Hallows - Part 1', 'fantasy', 2010, 'David Yates', 'JK Rowling', 'Daniel Radcliffe-Emma Watson-Rupert Grint-Tom Felton-Ralp Fiennes', 'https://m.media-amazon.com/images/M/MV5BMTQ2OTE1Mjk0N15BMl5BanBnXkFtZTcwODE3MDAwNA@@._V1_.jpg',
+VALUES ('Harry Potter and the Deathly Hallows - Part 1', 'fantasy', 2010, 'David Yates', 'JK Rowling', 'Daniel Radcliffe-Emma Watson-Rupert Grint-Tom Felton-Ralph Fiennes', 'https://m.media-amazon.com/images/M/MV5BMTQ2OTE1Mjk0N15BMl5BanBnXkFtZTcwODE3MDAwNA@@._V1_.jpg',
 'https://www.youtube.com/embed/qJRvBtqOOz8', 'While villainous Lord Voldemort begins taking over the Ministry of Magic, Harry, Ron and Hermione must race against time to 
 finish Dumbledores quest to find and destroy Voldemorts Horcruxes in order to stop the Dark Lord once and for all. On their own out in the world, the trio must rely upon 
 one another as evil forces threaten to tear them apart. Will they succeed? Will Voldemort finally be stopped? What is the mystery behind the Deathly Hallows?');
@@ -264,3 +264,135 @@ VALUES ('Derek Haas', 1970, 'Catch That Kid-Wanted-The Double');
 
 INSERT INTO writer (writername, birthyear, movies)
 VALUES ('Chris Morgan', 1970, 'Wanted-Fast-47 Ronin');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Keanu Reeves', 1964, 'The Matrix-Constantine-47 Ronin', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2022%2F07%2F15%2FKeanu-Reeves-John-Wick-071522-2.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Michael Nycvist', 1960, 'Abduction-Disconnect-Colonia', 'https://www.looper.com/img/gallery/why-viggo-from-john-wick-looks-so-familiar/l-intro-1611754422.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Alfie Allen', 1986, 'Game of Thrones-Pandemic-The Predator', 'https://images6.fanpop.com/image/photos/39500000/Alfie-Allen-as-Iosef-Tarasov-in-John-Wick-2014-alfie-allen-39548466-900-599.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Adrianne Palicki', 1983, 'Legion-Red Dawn-Coffee Town', 'https://m.media-amazon.com/images/M/MV5BYjc2MGNlODItMjdkOC00OWJiLWE1ZTQtODU3MDNjMTkwZDIxXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Bridget Moynahan', 1971, 'Unknown-Prey-Small Time', 'https://static.wikia.nocookie.net/john-wick8561/images/d/d0/Helen_Wick.jpg/revision/latest?cb=20190404152934');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Ruby Rose', 1986, 'The Meg-Vanquish-Taurus', 'https://i.pinimg.com/originals/93/e3/e5/93e3e5073cfc45401cc7be5196caa603.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Laurence Fishburne', 1961, 'Standoff-Imprisoned-The Mule', 'https://static1.srcdn.com/wordpress/wp-content/uploads/2017/02/Laurence-Fishburne-in-John-Wick-2.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Ian McShane', 1942, 'Death Race-Hercules-Jawbone', 'https://images.indianexpress.com/2021/07/ian-mcshane-120.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Riccardo Scamarcio', 1979, 'Burnt-Ali and Nino-Dalida', 'https://m.media-amazon.com/images/M/MV5BNDllYzZlNTAtZDg2Zi00ODU1LWIyM2QtNDFjYTdiMjNjZDBjXkEyXkFqcGdeQXVyNDE5MTU2MDE@._V1_.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Halle Berry', 1966, 'The Kid-Kings-Moonfall', 'https://static1.moviewebimages.com/wordpress/wp-content/uploads/2022/02/Halle-Berry.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Mark Dacascos', 1964, 'Beyond the Game-The Driver-The Ray', 'https://www.slashfilm.com/img/gallery/mark-dacascos-interview-john-wick-chapter-3-parabellum/intro-import.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Donnie Yen', 1963, '14 Blades-Dragon-Star Wars: Rogue One', 'https://assets-prd.ignimgs.com/2023/03/02/johnwickchapter4arealdilemmaclip-ign-blogroll-1677778928064.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Scott Adkins', 1976, 'Abduction-One Shot-Section 8', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2023%2F03%2F21%2FScott-Adkins-John-Wick-4-032123.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Bill Skarsgård', 1990, 'Deadpool 2-It-Barbarian', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2023%2F03%2F21%2FBill-Skarsgard-John-Wick-4-032123.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Daniel Radcliffe', 1989, 'Jungle-Beast of Burden-Guns Akimbo', 'https://www.looper.com/img/gallery/what-daniel-radcliffe-has-been-doing-since-harry-potter-ended/intro-1569869083.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Rupert Grint', 1988, 'Into the White-Moonwalkers-Knock at the Cabin', 'https://images.hindustantimes.com/rf/image_size_630x354/HT/p2/2020/05/08/Pictures/_f4f594a2-90ed-11ea-b24e-c3981487abe8.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Emma Watson', 1990, 'Noah-The Circle-Little Women', 'https://people.com/thmb/RpnNLplOGndVrTF-rdBlp0biuxE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(719x39:721x41)/Emma-Watson-c59dff78899047bb839b894665b85a13.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Robbie Coltrane', 1950, 'Van Helsing-StormBreaker-Effie Gray', 'https://www.gannett-cdn.com/presto/2022/10/14/USAT/5d6ee4d3-d53b-4399-a987-329590fdd378-XXX_ZX20791_.jpg?width=660&height=435&fit=crop&format=pjpg&auto=webp');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Tom Felton', 1987, 'Ophelia-The Forgotten Battle-Burial', 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/11/23/09/malfoy.0.0.jpg?width=1200');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Kenneth Branagh', 1960, 'Valkyrie-Dunkirk-Tenet', 'https://static.wikia.nocookie.net/villains/images/1/14/Gilderoy_Lockhart_HP_CoS_promotional_picture.jpg/revision/latest?cb=20221120180634');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Richard Harris', 1930, 'Trojan Eddie-Gladiator-The Pearl', 'https://img.nieuwsblad.be/kvfOAkNguHxPP7ApYwJ13sGZMMs=/960x640/smart/https%3A%2F%2Fstatic.nieuwsblad.be%2FAssets%2FImages_Upload%2F2022%2F11%2F18%2Fc340907b-f880-44db-9f8e-da8ead15eea4.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Gary Oldman', 1958, 'Child 44-Darkest Hour-Crisis', 'https://www.thedigitalfix.com/wp-content/sites/thedigitalfix/2022/10/gary-oldman-sirius-black.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Michael Gambon', 1940, 'The Book of Eli-Quartet-Cordelia', 'https://images.indianexpress.com/2022/01/MichaelGambon12.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Robert Pattinson', 1986, 'Twilight-Tenet-The Batman', 'https://i.insider.com/6203dfc6019b02001851f0e1?width=700');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Ralph Fiennes', 1962, 'Spectre-No Time to Die-The Menu', 'https://hips.hearstapps.com/digitalspyuk.cdnds.net/18/03/1516016506-vhp.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Alan Rickman', 1946, 'Die Hard-Galaxy Quest-Eye in the Sky', 'https://i.ndtvimg.com/i/2016-01/snape_640x480_71452776743.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Paul Walker', 1973, 'Fast-Takers-Hours', 'https://static.onecms.io/wp-content/uploads/sites/6/2013/12/paul-walker-fast-and-furious.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Vin Diesel', 1967, 'Fast-The Last Witch Hunter-Bloodshot', 'https://cdn.britannica.com/97/194197-050-5BD88874/Vin-Diesel-The-Fast-and-the-Furious.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Michelle Rodriguez', 1978, 'Fast-Machete Kills-Widows', 'https://www.indiewire.com/wp-content/uploads/2021/05/michelle-rodriguez.png?w=780');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Jordana Brewster', 1980, 'The Faculty-Annapolis-Home Sweet Hell', 'https://media.vanityfair.com/photos/5d177da6734e1f0008f96136/master/w_2560%2Cc_limit/fast-9-jordana-brewster.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Rick Yune', 1971, 'Die Another Day-Ninja Assassin-Olympus Has Fallen', 'https://i.pinimg.com/736x/d2/09/d1/d209d171e319ee2cd27834c9f5823883.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Tyrese Gibson', 1978, 'Baby Boy-Transformers-Morbius', 'https://m.media-amazon.com/images/M/MV5BMTQ5MjcxNjI3MV5BMl5BanBnXkFtZTYwMzQ3NTE3._V1_.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Devon Aoki', 1982, 'Death of a Dinasty-Sin City-War', 'https://m.media-amazon.com/images/M/MV5BMTg0MTAzNDE0MF5BMl5BanBnXkFtZTYwODU3NTE3._V1_.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Chris Bridges', 1977, 'Crash-Ride-John Henry', 'https://film-book.com/wp-content/uploads/2020/11/ludacris-fast-and-furious-01-700x400-1.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Eva Mendes', 1974, 'Hitch-The Other Guys-The Place Beyond the Pines', 'https://www.aceshowbiz.com/images/news/eva-mendes-rumored-to-return-for-furious-8.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Lucas Black', 1982, 'Sling-Friday Night Lights-Blade Legion', 'https://dvdmedia.ign.com/dvd/image/article/734/734756/the-fast-and-the-furious-tokyo-drift-20060922070255505-000.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Sung Kang', 1972, 'Better Luck Tomorrow-Bullet to the Head-Snakehead', 'https://upload.wikimedia.org/wikipedia/en/3/3a/Han_Lue.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Brian Tee', 1977, 'The Wolverine-No Tears for the Dead-The Beautiful Ones', 'https://static.wikia.nocookie.net/fastandfurious/images/8/8a/Brian-Tee.jpg/revision/latest?cb=20150507194336');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Nathalie Kelley', 1985, 'Loaded-Infiltrators-The Baker and the Beauty', 'https://static.wikia.nocookie.net/fastandfurious/images/5/56/Neela_1.jpg/revision/latest?cb=20130617212549');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Nikki Griffin', 1978, 'The Dukes of Hazard-Monster Night-The Forgotten Ones', 'https://static.wikia.nocookie.net/fastandfurious/images/0/09/F3_Cindy_Profile.png/revision/latest?cb=20201009073526');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Elsa Pataky', 1976, 'Tidelands-Interceptor-Poker Face', 'https://media1.popsugar-assets.com/files/thumbor/5a8txKytKdzlAIkAN69FmZ7ur_4/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2017/04/13/734/n/1922283/eb26e1a3f28a3ff5_MCDSAHA_EC208_H.JPG');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Dwayne Johnson', 1972, 'Jumanju-Jungle Cruise-Black Adam', 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2017%2F12%2Fdwayne-2000.jpg&q=60');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Cody Walker', 1988, 'The Mine-USS Indianapolis: Men of Courage', 'https://cf-images.us-east-1.prod.boltdns.net/v1/static/219646971/b044bda7-ed55-4071-af89-8ee5e34188c2/adc66753-2c16-4ef3-8239-c485bfaaeff8/1280x720/match/image.jpg');
+
+INSERT INTO actor (actorname, birthyear, movies, photo)
+VALUES ('Jason Statham', 1967, 'The Transporter-The Expendables-Cash Truck', 'https://static.onecms.io/wp-content/uploads/sites/6/2015/04/jason-statham-2000.jpg');
