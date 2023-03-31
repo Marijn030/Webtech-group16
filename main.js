@@ -5,6 +5,7 @@ var morgan = require('morgan');
 var path = require("path");
 var fs = require("fs");
 var url = require('url');
+var sqlite3 = require("sqlite3");
 
 //adding lisening
 app.get("/", function(req, res){

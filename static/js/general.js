@@ -1,5 +1,7 @@
+var express = require('express');
+var app = express();
 var file = "cinema.db";
-var sqlite3 = require("sqlite3").verbose();
+var sqlite3 = require("sqlite3");
 var db = new sqlite3.Database(file);
 
 var movieDirector;
