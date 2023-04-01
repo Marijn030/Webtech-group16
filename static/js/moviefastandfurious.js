@@ -311,7 +311,7 @@ for (let starringActor of movieJohnWick.stars) {
 //add an article with the poster
 let articlePoster = document.createElement('article');
 
-let h3Poster = document.createElement('h3')
+let h3Poster = document.createElement('h3');
 let h3PosterText = document.createTextNode('Poster');
 h3Poster.appendChild(h3PosterText);
 articlePoster.appendChild(h3Poster);
@@ -329,7 +329,7 @@ mainTag.appendChild(articlePoster);
 //add an article with the trailer
 let articleTrailer = document.createElement('article');
 
-let h3Trailer = document.createElement('h3')
+let h3Trailer = document.createElement('h3');
 let h3TrailerText = document.createTextNode('Trailer');
 h3Trailer.appendChild(h3TrailerText);
 articleTrailer.appendChild(h3Trailer);
