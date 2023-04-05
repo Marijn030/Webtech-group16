@@ -1,4 +1,4 @@
-fetch("/index.html").then(c => c.json()).then(movies => {
+fetch("/movies").then(c => c.json()).then(movies => {
     console.log(movies);
     for (const movie of movies) {
         const h1 = document.createElement("h1");

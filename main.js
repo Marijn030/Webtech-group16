@@ -16,18 +16,20 @@ app.use(logger);
 //adding lisening
 app.get("/", function(req, res){
     fs.readFile('static/web_pages/index.html', function(err, data) {
-    var db = new sqlite3.Database("cinema");
-    db.serialize(function () {
-        db.all("SELECT * FROM movie", (err, rows) => {
-            res.json(rows);
-        });
-    })
-    db.close();
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         return res.end();
         //can be visited at http://localhost:8016
     });
+});
+app.get("/movies", (req, res) => {
+    var db = new sqlite3.Database("cinema");
+    db.serialize(function () {
+        db.all("SELECT * FROM movie", (err, rows) => {
+            res.json(rows);
+        });
+    })   
+    db.close();
 });
 app.get("/static/web_pages/userprofile.html", function (req, res) {
     fs.readFile('static/web_pages/userprofile.html', function (err, data) {
