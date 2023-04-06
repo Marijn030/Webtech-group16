@@ -53,3 +53,4 @@ app.use(express.static(staticPath)); //makes you able to acces static files such
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
 app.listen(8016);
+
