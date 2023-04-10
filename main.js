@@ -13,7 +13,9 @@ function logger(req, res, next) {
 }
 app.use(logger);
 
-//adding lisening
+//NOTE TO SELF: IN ORDER TO MAKE CLICK IMG --> USE app.get("/moviedesc/:movid", function(req, res){}). THEN REDIRECT TO THIS PAGE WITH CORRECT ID BASED ON ID IN DB! 
+
+//adding listening
 app.get("/", function(req, res){
     fs.readFile('static/web_pages/index.html', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
