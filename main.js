@@ -14,6 +14,7 @@ function logger(req, res, next) {
 app.use(logger);
 
 //NOTE TO SELF: IN ORDER TO MAKE CLICK IMG --> USE app.get("/moviedesc/:movid", function(req, res){}). THEN REDIRECT TO THIS PAGE WITH CORRECT ID BASED ON ID IN DB! 
+//IN THIS CASE READFILE GENERAL PAGE SETUP + INSERT DATA BASED ON QUERY IN URL.
 
 //adding listening
 app.get("/", function(req, res){
