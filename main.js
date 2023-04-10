@@ -31,8 +31,25 @@ app.get("/movies", (req, res) => {
     })
     db.close();
 });
-app.get("/static/web_pages/userprofile.html", function (req, res) {
-    fs.readFile('static/web_pages/userprofile.html', function (err, data) {
+app.get("/profile.html", function (req, res) {
+    fs.readFile('static/web_pages/profile.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+        //can be visited at http://localhost:8016
+    });
+});
+app.get("/users", function (req, res) {
+    var db = new sqlite3.Database("cinema");
+    db.serialize(function () {
+        db.all("SELECT * FROM user", (err, rows) => {
+            res.json(rows);
+        });
+    })
+    db.close();
+});
+app.get("/login.html", function (req, res) {
+    fs.readFile('static/web_pages/login.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(data);
         return res.end();

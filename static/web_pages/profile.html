@@ -9,12 +9,22 @@
     <meta name="author" content="Taylan Batman, Jonathan van Dijk, Marijn Luime">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
     <link rel="stylesheet" href="../css/general.css">
-    <script src="../nav.js"></script>    
+    <script src="../users.js"></script>  
+    <script src="../nav.js" defer></script>  
+    <script src="../userprofile.js" defer></script>
 </head>
 <body>
     <header>
+        User Profile Page
     </header>
     <main>
+        <form>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" placeholder="Your username"><br>
+            <label for="password">Password:</label><br>
+            <input type="text" id="password" name="password" placeholder="Your password">
+            <input type="submit" id="submit" value="Submit">
+        </form>
     </main>
 </body>
 </html>
