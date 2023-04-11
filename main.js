@@ -15,6 +15,8 @@ app.use(logger);
 
 //NOTE TO SELF: IN ORDER TO MAKE CLICK IMG --> USE app.get("/moviedesc/:movid", function(req, res){}). THEN REDIRECT TO THIS PAGE WITH CORRECT ID BASED ON ID IN DB! 
 //IN THIS CASE READFILE GENERAL PAGE SETUP + INSERT DATA BASED ON QUERY IN URL.
+//NOTE TO SELF 2: IN ORDER TO MAKE PAGINATION --> USE app.get("/movielist/:pagenr", function(req, res){}) THEN TAKE MOVIES IN [n*pagenr*10, n+1*pagenr*10]!
+//FIRST 10 MOVIES POSTED ON INDEX.
 
 //adding listening
 app.get("/", function(req, res){
