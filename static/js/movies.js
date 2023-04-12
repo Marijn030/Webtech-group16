@@ -1,9 +1,10 @@
 fetch("/movies").then(c => c.json()).then(movies => {
     console.log(movies);
-    for (const movie of movies) {
-        console.log(typeof movie);
-        const h1 = document.createElement("h1");
-        h1.innerText = movie.title;
-        document.querySelector(".container").appendChild(h1);
+
+    var labels = document.getElementsByTagName('label');
+    var buttons = document.getElementsByTagName('button');
+    for (let i = 0; i < 10; i++) {
+        labels[i].innerText = "Movie " + movies[i].id;
+        buttons[i].innerText = movies[i].title;
     }
 });
