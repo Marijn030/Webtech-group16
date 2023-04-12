@@ -12,7 +12,7 @@ function nextMovie() {
 
     h3.innerText = "Set " + currentSet + " of " + totalSets;
 
-    reloadPage();
+    updatePage();
 }
 
 function updatePage() {
