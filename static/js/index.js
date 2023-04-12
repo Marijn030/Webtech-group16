@@ -15,7 +15,7 @@ function nextMovie() {
     reloadPage();
 }
 
-function reloadPage() {
+function updatePage() {
     fetch("/movies").then(c => c.json()).then(movies => {
         console.log(movies);
 
