@@ -11,7 +11,6 @@ var sqlite3 = require("sqlite3");
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 app.use(morgan('combined', { stream: accessLogStream }))
 
-
 //NOTE TO SELF: IN ORDER TO MAKE CLICK IMG --> USE app.get("/moviedesc/:movid", function(req, res){}). THEN REDIRECT TO THIS PAGE WITH CORRECT ID BASED ON ID IN DB! 
 //IN THIS CASE READFILE GENERAL PAGE SETUP + INSERT DATA BASED ON QUERY IN URL.
 
@@ -54,5 +53,12 @@ var staticPath = path.join(__dirname, "/static");
 app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB. 
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
+
+app.use(function(err, req, res, next){
+    if(err.message){
+        res.status(500).send("Error: " + err.message);
+    }
+    res.status(500).send('Something has failed!')
+})
 app.listen(8016);
 
