@@ -12,6 +12,9 @@ function logger(req, res, next) {
     next();
 }
 app.use(logger);
+app.set("views", path.resolve(__dirname, "views")); 
+app.set("view engine", "pug");
+
 
 //NOTE TO SELF: IN ORDER TO MAKE CLICK IMG --> USE app.get("/moviedesc/:movid", function(req, res){}). THEN REDIRECT TO THIS PAGE WITH CORRECT ID BASED ON ID IN DB! 
 //IN THIS CASE READFILE GENERAL PAGE SETUP + INSERT DATA BASED ON QUERY IN URL.
@@ -36,13 +39,17 @@ app.get("/movies", (req, res) => {
     })
     db.close();
 });
-app.get("/static/web_pages/userprofile.html", function (req, res) {
+app.get("/userprofile", function (req, res) {
     fs.readFile('static/web_pages/userprofile.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(data);
         return res.end();
         //can be visited at http://localhost:8016
     });
+});
+
+app.get("/clickedmovie/:movid", function (req, res) {
+    res.render('movieinfo', {})
 });
 
 
