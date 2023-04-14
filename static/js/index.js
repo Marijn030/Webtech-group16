@@ -61,5 +61,5 @@ function loadMovie() {
     var id = parseInt(this.getAttribute('id'));
     console.log(id);
 
-    window.location.href = "/clickedmovie/:" + id;
+    window.location.href = "/clickedmovie/" + id;
 }
