@@ -14,7 +14,7 @@ button.addEventListener('click', orderTicket, false)
 
 //event handler for when te confirm button is clicked
 function orderTicket() {
-    if (select.value.length == 1) {
+    if (select.value.length) {
         alert('Your order has been received, enjoy the movie!');
     }
     else {
