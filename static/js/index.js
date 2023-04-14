@@ -42,6 +42,7 @@ function updatePage() {
         for (let i = begin; i < begin + 10; i++) {
             labels[i % 10].innerText = "Movie " + movies[i].id;
             buttons[i % 10].innerText = movies[i].title;
+            buttons[i % 10].setAttribute('id', movies[i].id);
         }
     });
 }
@@ -52,5 +53,7 @@ for (let i = 0; i < buttons.length; i++) {
 
 function loadMovie() {
     var title = String(this.innerText);
+    var id = parseInt(this.getAttribute('id'));
     console.log(title);
+    console.log(id);
 }
