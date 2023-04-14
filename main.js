@@ -21,6 +21,8 @@ app.use(express.static(staticPath));
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
+app.use(cookieParser());
+app.use(express.json);
 
 //var db = new sqlite3.Database("cinema");
 
