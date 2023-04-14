@@ -1,6 +1,9 @@
 var next = document.getElementsByTagName('button')[10];
 next.addEventListener("click", nextMovie, false);
 
+var labels = document.getElementsByTagName('label');
+var buttons = document.getElementsByTagName('button');
+
 function nextMovie() {
     var h3 = document.getElementsByTagName('h3')[0];
 
@@ -36,11 +39,18 @@ function updatePage() {
         var increment = currentSet - 1;
         var begin = 0 + 10 * increment;
 
-        var labels = document.getElementsByTagName('label');
-        var buttons = document.getElementsByTagName('button');
         for (let i = begin; i < begin + 10; i++) {
             labels[i % 10].innerText = "Movie " + movies[i].id;
             buttons[i % 10].innerText = movies[i].title;
         }
     });
+}
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', loadMovie, false);
+}
+
+function loadMovie() {
+    var title = String(this.innerText);
+    console.log(title);
 }
