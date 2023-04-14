@@ -43,7 +43,7 @@ app.get("/movies", (req, res) => {
     })
     db.close();
 });
-app.get("/profile", function (req, res) {
+app.get("/profile", isLoggedIn, function (req, res) {
     fs.readFile('static/web_pages/userprofile.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(data);
@@ -73,10 +73,20 @@ app.get("/login", function (req, res) {
     });
 });
 app.post("/login", function(req, res){
-    let username= req.body.user;
-    let password= req.body.password;
+    var db = new sqlite3.Database("cinema");
+
+    try{
+        let  q = "SELECT password FROM users where login=?";
+        db.query(q, [req.body.user, req.body.password], (err, rows) => {
+            if (err) throw err;
+            
+        });
+    } catch{
+
+    }
 
     res.end();
+    db.close();
 });
 //register part
 app.get("/register", function (req, res) {
@@ -91,6 +101,7 @@ app.post("/register", async (req, res) => {
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         
+        res.redirect('/login');
     } catch{
         res.redirect('/register');
     }
@@ -103,9 +114,14 @@ app.use(function(err, req, res, next){
     if(err.message){
         res.status(500).send("Error: " + err.message);
     }
-    res.status(500).send('Something has failed!')
+    res.status(500).send('Something has failed!');
 })
 app.listen(8016); //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
+
+function isLoggedIn(req, res, next){
+    return next();
+
+}
 
 //event listener for if the server shuts down?
 /*process.on('SIGINT', () => {
