@@ -39,6 +39,13 @@ app.get("/profile", function (req, res) {
         return res.end();
     });
 });
+app.get("/store", function (req, res) {
+    fs.readFile('static/web_pages/store.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+    });
+});
 app.get("/static/web_pages/moviefastandfurious1.html", function (req, res) {
     fs.readFile('static/web_pages/moviefastandfurious1.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -52,6 +59,11 @@ app.get("/login", function (req, res) {
         res.write(data);
         return res.end();
     });
+});
+app.post("/login", function(req, res){
+    //req
+    res.write("not implemented yet");
+    res.end();
 });
 var staticPath = path.join(__dirname, "/static");
 app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB. 
