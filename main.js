@@ -140,13 +140,7 @@ app.post("/register", async (req, res) => {
     db.close();
 });
 
-app.use(function(err, req, res, next){
-    if(err.message){
-        res.status(500).send("Error: " + err.message);
-    }
-    res.status(500).send('Something has failed!');
-})
-app.listen(8016); //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
+
 
 function isLoggedIn(req, res, next){
     return next();
@@ -158,3 +152,12 @@ function isLoggedIn(req, res, next){
     db.close();
     server.close();
 });*/
+
+app.use(function(err, req, res, next){
+    if(err.message){
+        res.status(500).send("Error: " + err.message);
+    }
+    else{res.status(500).send('Something has failed!');}
+    
+})
+app.listen(8016); //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
