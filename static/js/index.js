@@ -52,7 +52,7 @@ function updatePage() {
 }
 
 //add event handlers to the buttons for when they get clicked
-for (let i = 0; i < buttons.length; i++) {
+for (let i = 0; i < 10; i++) {
     buttons[i].addEventListener('click', loadMovie, false);
 }
 
