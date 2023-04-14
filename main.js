@@ -68,54 +68,21 @@ app.get("/store", function (req, res) {
     });
 });
 
-app.get("/clickedmovie/:movid", function (req, res) {
-    try{
+app.get("/clickedmovie/:movid", function (req, res, next) {
+        if(!parseInt(req.params.movid, 10)){return(next(new Error("Invalid url.")));}
         var movid = parseInt(req.params.movid, 10);
         const db = new sqlite3.Database("cinema");
         var title, genre, year, director, writer, actor, post, trail, pl;
         db.serialize(function() {
-            db.each("SELECT title AS titl FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else if(!rows){next(new Error("movie doesn't exist in database")); return 0}
-                else{title = rows.titl;}
-            });
-            db.each("SELECT genre AS genr FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {genre = rows.genr;}
-            });
-            db.each("SELECT year AS yea FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {year = rows.yea;}
-            });
-            db.each("SELECT director AS directo FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {director = rows.directo;}
-            });
-            db.each("SELECT writer AS write FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {writer = rows.write;}
-            });
-            db.each("SELECT actor AS acto FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {actor = rows.acto;}
-            });
-            db.each("SELECT poster AS poste FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {post = rows.poste;}
-            });
-            db.each("SELECT trailer AS traile FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {trail = rows.traile;}
-            });
-            db.each("SELECT plot AS plo FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if(err){next(new Error("error while fetching from database"));}
-                else {pl = rows.plo; res.render('movieinfo', {movietitle:title, moviegenre:genre, movieyear:year, moviedirector:director, moviewriter:writer,
-                    actors: actor, poster:post, trailer:trail, plot:pl});} 
+            db.get("SELECT * FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next(new Error("Fetching from database failed."));}
+                else if(!rows){next(new Error("Movie wasn't found in database."));}
+                else{title = rows.title; genre = rows.genre; year = rows.year; director = rows.director; writer = rows.writer; actor = rows.actor; post = rows.poster; trail = rows.trailer; pl = rows.plot;
+                    res.render('movieinfo', {movietitle:title, moviegenre:genre, movieyear:year, moviedirector:director, moviewriter:writer,
+                    actors: actor, poster:post, trailer:trail, plot:pl});}
             });
         });
         db.close();
-    }
-    catch{next(new Error("invalid url"))}
 });
 //login part
 app.get("/login", function (req, res) {
