@@ -1,17 +1,18 @@
 //declaring different middlewares to use
-var express = require('express');
-var app = express();
-var morgan = require('morgan');
-var path = require("path");
-var fs = require("fs");
-var url = require('url');
-var sqlite3 = require("sqlite3");
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const path = require("path");
+const fs = require("fs");
+const url = require('url');
+const sqlite3 = require("sqlite3");
+const bcrypt = require('bcrypt');
 
 //setup for the server beforehand
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.urlencoded({extended: false}));
-var staticPath = path.join(__dirname, "/static");
+const staticPath = path.join(__dirname, "/static");
 app.use(express.static(staticPath)); 
 //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB.
 //However tag-only HTML is considered static, since the tags themselves are consistent.
@@ -27,8 +28,11 @@ app.get("/", function(req, res){
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         return res.end();
-        //can be visited at http://localhost:8016
     });
+});
+app.get("/home", function(req,res){
+    res.redirect('/');
+    res.end();
 });
 app.get("/movies", (req, res) => {
     var db = new sqlite3.Database("cinema");
@@ -82,10 +86,17 @@ app.get("/register", function (req, res) {
         return res.end();
     });
 });
-app.post("/register", function (req, res) {
-    //req
-    res.write("not implemented yet");
+app.post("/register", async (req, res) => {
+    var db = new sqlite3.Database("cinema");
+    try{
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        
+    } catch{
+        res.redirect('/register');
+    }
+
     res.end();
+    db.close();
 });
 
 app.use(function(err, req, res, next){
