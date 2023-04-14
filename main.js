@@ -7,9 +7,16 @@ var fs = require("fs");
 var url = require('url');
 var sqlite3 = require("sqlite3");
 
-//Adding logger that logs to file access.log.
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
-app.use(morgan('combined', { stream: accessLogStream }))
+//setup for the server beforehand
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+app.use(morgan('combined', { stream: accessLogStream }));
+app.use(express.urlencoded({extended: false}));
+var staticPath = path.join(__dirname, "/static");
+app.use(express.static(staticPath)); 
+//makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB.
+//However tag-only HTML is considered static, since the tags themselves are consistent.
+
+//var db = new sqlite3.Database("cinema");
 
 //NOTE TO SELF: IN ORDER TO MAKE CLICK IMG --> USE app.get("/moviedesc/:movid", function(req, res){}). THEN REDIRECT TO THIS PAGE WITH CORRECT ID BASED ON ID IN DB! 
 //IN THIS CASE READFILE GENERAL PAGE SETUP + INSERT DATA BASED ON QUERY IN URL.
@@ -53,6 +60,7 @@ app.get("/static/web_pages/moviefastandfurious1.html", function (req, res) {
         return res.end();
     });
 });
+//login part
 app.get("/login", function (req, res) {
     fs.readFile('static/web_pages/login.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -61,10 +69,12 @@ app.get("/login", function (req, res) {
     });
 });
 app.post("/login", function(req, res){
-    //req
-    res.write("not implemented yet");
+    let username= req.body.user;
+    let password= req.body.password;
+
     res.end();
 });
+//register part
 app.get("/register", function (req, res) {
     fs.readFile('static/web_pages/register.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -77,10 +87,6 @@ app.post("/register", function (req, res) {
     res.write("not implemented yet");
     res.end();
 });
-var staticPath = path.join(__dirname, "/static");
-app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB. 
-//However tag-only HTML is considered static, since the tags themselves are consistent.
-//can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
 
 app.use(function(err, req, res, next){
     if(err.message){
@@ -88,5 +94,10 @@ app.use(function(err, req, res, next){
     }
     res.status(500).send('Something has failed!')
 })
-app.listen(8016);
+app.listen(8016); //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
 
+//event listener for if the server shuts down?
+/*process.on('SIGINT', () => {
+    db.close();
+    server.close();
+});*/
