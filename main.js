@@ -137,6 +137,10 @@ app.post("/login", function(req, res){
         db.query(q, [req.body.user, req.body.password], (err, rows) => {
             if (err) throw err;
             
+            db.each("SELECT actor AS acto FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if (err) { next(new Error("error while fetching from database")); }
+                else { actor = rows.acto; }
+            });
         });
     } catch(e){
 
