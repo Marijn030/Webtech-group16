@@ -1,3 +1,5 @@
+//get all the movies to display on the home page index.html
+
 fetch("/movies").then(c => c.json()).then(movies => {
     console.log(movies);
 

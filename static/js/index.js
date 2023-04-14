@@ -1,9 +1,12 @@
+//first get the next button and add an event listener to it for when it gets clicked
 var next = document.getElementsByTagName('button')[10];
 next.addEventListener("click", nextMovie, false);
 
+//then get the labels and the buttons for the movies
 var labels = document.getElementsByTagName('label');
 var buttons = document.getElementsByTagName('button');
 
+//then the event handler for when the next button gets clicked
 function nextMovie() {
     var h3 = document.getElementsByTagName('h3')[0];
 
@@ -18,6 +21,7 @@ function nextMovie() {
     updatePage();
 }
 
+//a help function to update the page when the next button is clicked
 function updatePage() {
     fetch("/movies").then(c => c.json()).then(movies => {
         console.log(movies);
@@ -47,13 +51,17 @@ function updatePage() {
     });
 }
 
+//add event handlers to the buttons for when they get clicked
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', loadMovie, false);
 }
 
+//the event handler for when the movie buttons get clicked
 function loadMovie() {
     var title = String(this.innerText);
     var id = parseInt(this.getAttribute('id'));
     console.log(title);
     console.log(id);
+
+
 }
