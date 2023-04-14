@@ -57,11 +57,9 @@ for (let i = 0; i < buttons.length; i++) {
 }
 
 //the event handler for when the movie buttons get clicked
-function loadMovie() {
-    var title = String(this.innerText);
+function loadMovie() {    
     var id = parseInt(this.getAttribute('id'));
-    console.log(title);
     console.log(id);
 
-
+    fetch("/clickedmovie/:" + id);
 }
