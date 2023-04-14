@@ -65,6 +65,18 @@ app.post("/login", function(req, res){
     res.write("not implemented yet");
     res.end();
 });
+app.get("/register", function (req, res) {
+    fs.readFile('static/web_pages/register.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+    });
+});
+app.post("/register", function (req, res) {
+    //req
+    res.write("not implemented yet");
+    res.end();
+});
 var staticPath = path.join(__dirname, "/static");
 app.use(express.static(staticPath)); //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB. 
 //However tag-only HTML is considered static, since the tags themselves are consistent.
