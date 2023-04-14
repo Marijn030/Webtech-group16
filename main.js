@@ -40,6 +40,15 @@ app.get("/movies", (req, res) => {
     })
     db.close();
 });
+app.get("/moviescreenings", (req, res) => {
+    var db = new sqlite3.Database("cinema");
+    db.serialize(function () {
+        db.all("SELECT * FROM moviescreening", (err, rows) => {
+            res.json(rows);
+        });
+    })
+    db.close();
+});
 app.get("/userprofile", function (req, res) {
     fs.readFile('static/web_pages/userprofile.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
