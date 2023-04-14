@@ -7,9 +7,8 @@ const fs = require("fs");
 const url = require('url');
 const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 const pug = require("pug");
-app.set("views", path.resolve(__dirname, "views")); 
-app.set("view engine", "pug");
 
 //setup for the server beforehand
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
@@ -19,7 +18,12 @@ const staticPath = path.join(__dirname, "/static");
 app.use(express.static(staticPath)); 
 //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB.
 //However tag-only HTML is considered static, since the tags themselves are consistent.
+app.set("views", path.resolve(__dirname, "views"));
+app.set("view engine", "pug");
 
+//var db = new sqlite3.Database("cinema");
+
+//adding listening
 app.get("/", function(req, res){
     fs.readFile('static/web_pages/index.html', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
@@ -100,6 +104,10 @@ app.post("/login", function(req, res){
         db.query(q, [req.body.user, req.body.password], (err, rows) => {
             if (err) throw err;
             
+            db.each("SELECT actor AS acto FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if (err) { next(new Error("error while fetching from database")); }
+                else { actor = rows.acto; }
+            });
         });
     } catch(e){
 
