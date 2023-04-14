@@ -6,7 +6,8 @@ var path = require("path");
 var fs = require("fs");
 var url = require('url');
 var sqlite3 = require("sqlite3");
-var pug = require("pug")
+var pug = require("pug");
+const { error, dir } = require('console');
 
 function logger(req, res, next) {
     console.log('%s %s', req.method, req.url);
@@ -59,9 +60,52 @@ app.get("/userprofile", function (req, res) {
 });
 
 app.get("/clickedmovie/:movid", function (req, res) {
-    res.render('movieinfo', {movietitle:"John Wick: Chapter 4", moviegenre:"action-thriller", movieyear:"2023", moviedirector:"Chad Stahelski", moviewriter:"Derek Kolstad",
-actors: "Keanu Reeves-Donnie Yen-Scott Adkins-Ian Mcshane-Bill Skarsgård", poster:"https://assets-prd.ignimgs.com/2023/02/08/jw4-2025x3000-online-character-1sht-keanu-v187-1675886090936.jpg",
-trailer: "https://www.youtube.com/embed/qEVUtrk8_B4", plot: "Legendary assassin John Wick retired from his violent career after marrying the love of his life. Her sudden death leaves John in deep mourning. When sadistic mobster Iosef Tarasov and his thugs steal Johns prized car and kill the puppy that was a last gift from his wife,John unleashes the remorseless killing machine within and seeks vengeance. Meanwhile, Iosefs father -- Johns former colleague -- puts a huge bounty on Johns head."});
+    try{
+        var movid = parseInt(req.params.movid, 10);
+        const db = new sqlite3.Database("cinema");
+        var title, genre, year, director, writer, actor, post, trail, pl;
+        db.serialize(function() {
+            db.each("SELECT title AS titl FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else{title = rows.titl;}
+            });
+            db.each("SELECT genre AS genr FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {genre = rows.genr;}
+            });
+            db.each("SELECT year AS yea FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {year = rows.yea;}
+            });
+            db.each("SELECT director AS directo FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {director = rows.directo;}
+            });
+            db.each("SELECT writer AS write FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {writer = rows.write;}
+            });
+            db.each("SELECT actor AS acto FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {actor = rows.acto;}
+            });
+            db.each("SELECT poster AS poste FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {post = rows.poste;}
+            });
+            db.each("SELECT trailer AS traile FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {trail = rows.traile;}
+            });
+            db.each("SELECT plot AS plo FROM movie WHERE rowid = " + movid, (err, rows) => {
+                if(err){next("error while fetching from database");}
+                else {pl = rows.plo; res.render('movieinfo', {movietitle:title, moviegenre:genre, movieyear:year, moviedirector:director, moviewriter:writer,
+                    actors: actor, poster:post, trailer:trail, plot:pl});} 
+            });
+        });
+        db.close();
+    }
+    catch{next(new Error("invalid url"))}
 });
 
 
