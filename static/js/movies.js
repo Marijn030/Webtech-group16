@@ -7,7 +7,7 @@ fetch("/movies").then(c => c.json()).then(movies => {
     var strings = text.split(' ');
 
     var currentSet = parseInt(strings[1]);
-    var totalSets = parseInt(strings[3]);
+    var totalSets = Math.ceil(movies.length / 10);
 
     if (currentSet > totalSets) {
         currentSet = 1;
@@ -22,8 +22,10 @@ fetch("/movies").then(c => c.json()).then(movies => {
     var labels = document.getElementsByTagName('label');
     var buttons = document.getElementsByTagName('button');
     for (let i = begin; i < begin+10; i++) {
-        labels[i%10].innerText = "Movie " + movies[i].id;
-        buttons[i % 10].innerText = movies[i].title;
-        buttons[i % 10].setAttribute('id', movies[i].id);
+        if(movies[i]){
+            labels[i%10].innerText = "Movie " + (i+1);
+            buttons[i % 10].innerText = movies[i].title;
+            buttons[i % 10].setAttribute('id', movies[i].id);
+        }
     }
 });
