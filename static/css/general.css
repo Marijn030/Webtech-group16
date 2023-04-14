@@ -76,20 +76,11 @@ button img {
     max-height: auto;
 }
 
+h2 {
+    font-size: 4vw;
+}
+
 /*Screen specific*/
-@media only screen and (max-width:600px) {
-
-}
-
-@media only screen and (max-width: 425px ) {
-    * {
-        font-size: 4.5vw;
-    }
-
-    nav h2 a {
-        font-size: 3vw;
-    }
-}
 
 @media only screen and (max-width: 300px ) {
     * {
@@ -97,8 +88,22 @@ button img {
     }
 }
 
-@media only screen and (min-width:601px) {
+@media only screen and (max-width: 425px ) {
+    * {
+        font-size: 4.5vw;
+    }
+}
 
+@media only screen and (max-width:600px) {
+    * {
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (min-width:601px) {
+    * {
+        font-size: 3vw;
+    }
 }
 
 @media only screen and (min-width: 768px ) {
