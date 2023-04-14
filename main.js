@@ -81,7 +81,7 @@ app.post("/login", function(req, res){
             if (err) throw err;
             
         });
-    } catch{
+    } catch(e){
 
     }
 
@@ -102,8 +102,9 @@ app.post("/register", async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         
         res.redirect('/login');
-    } catch{
+    } catch(e){
         res.redirect('/register');
+        
     }
 
     res.end();
