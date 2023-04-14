@@ -52,7 +52,7 @@ app.get("/movies", (req, res) => {
 app.get("/moviescreenings", (req, res) => {
     var db = new sqlite3.Database("cinema");
     db.serialize(function () {
-        db.all("SELECT * FROM moviescreening", (err, rows) => {
+        db.all("SELECT * FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime)", (err, rows) => {
             res.json(rows);
         });
     })
