@@ -1,3 +1,4 @@
+//get all the movies to display on the home page index.html
 fetch("/movies").then(c => c.json()).then(movies => {
     console.log(movies);
 
@@ -22,6 +23,7 @@ fetch("/movies").then(c => c.json()).then(movies => {
     var buttons = document.getElementsByTagName('button');
     for (let i = begin; i < begin+10; i++) {
         labels[i%10].innerText = "Movie " + movies[i].id;
-        buttons[i%10].innerText = movies[i].title;
+        buttons[i % 10].innerText = movies[i].title;
+        buttons[i % 10].setAttribute('id', movies[i].id);
     }
 });
