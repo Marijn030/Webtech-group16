@@ -63,3 +63,11 @@ function loadMovie() {
 
     window.location.href = "/clickedmovie/" + id;
 }
+
+//then the select menu with all the moviescreenings
+var select = document.getElementsByTagName('select');
+select.addEventListener('change', movieSelected, false);
+
+function movieSelected() {
+
+}
