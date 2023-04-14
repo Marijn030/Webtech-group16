@@ -26,6 +26,12 @@ fetch("/movies").then(c => c.json()).then(movies => {
             labels[i%10].innerText = "Movie " + (i+1);
             buttons[i % 10].innerText = movies[i].title;
             buttons[i % 10].setAttribute('id', movies[i].id);
+            buttons[i % 10].setAttribute('style', 'visiblity:visible');
+        }
+        else{
+            labels[i%10].innerText = "";
+            buttons[i % 10].innerText = "";
+            buttons[i % 10].setAttribute('style', 'display:none');
         }
     }
 });

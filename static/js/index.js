@@ -31,7 +31,7 @@ function updatePage() {
         var strings = text.split(' ');
 
         var currentSet = parseInt(strings[1]);
-        var totalSets = parseInt(strings[3]);
+        var totalSets = parseInt(Math.ceil(movies.length / 10));
 
         if (currentSet > totalSets) {
             currentSet = 1;
@@ -44,9 +44,17 @@ function updatePage() {
         var begin = 0 + 10 * increment;
 
         for (let i = begin; i < begin + 10; i++) {
-            labels[i % 10].innerText = "Movie " + movies[i].id;
-            buttons[i % 10].innerText = movies[i].title;
-            buttons[i % 10].setAttribute('id', movies[i].id);
+            if(movies[i]){
+                labels[i % 10].innerText = "Movie " + (i+1);
+                buttons[i % 10].innerText = movies[i].title;
+                buttons[i % 10].setAttribute('id', movies[i].id);
+                buttons[i % 10].setAttribute('style', 'visiblity:visible');
+            }
+            else{
+                labels[i%10].innerText = "";
+                buttons[i % 10].innerText = "";
+                buttons[i % 10].setAttribute('style', 'display:none');
+            }
         }
     });
 }
