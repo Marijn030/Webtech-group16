@@ -6,6 +6,7 @@ var path = require("path");
 var fs = require("fs");
 var url = require('url');
 var sqlite3 = require("sqlite3");
+var pug = require("pug")
 
 function logger(req, res, next) {
     console.log('%s %s', req.method, req.url);
@@ -49,7 +50,9 @@ app.get("/userprofile", function (req, res) {
 });
 
 app.get("/clickedmovie/:movid", function (req, res) {
-    res.render('movieinfo', {})
+    res.render('movieinfo', {movietitle:"John Wick: Chapter 4", moviegenre:"action-thriller", movieyear:"2023", moviedirector:"Chad Stahelski", moviewriter:"Derek Kolstad",
+actors: "Keanu Reeves-Donnie Yen-Scott Adkins-Ian Mcshane-Bill Skarsgård", poster:"https://assets-prd.ignimgs.com/2023/02/08/jw4-2025x3000-online-character-1sht-keanu-v187-1675886090936.jpg",
+trailer: "https://www.youtube.com/embed/qEVUtrk8_B4", plot: "Legendary assassin John Wick retired from his violent career after marrying the love of his life. Her sudden death leaves John in deep mourning. When sadistic mobster Iosef Tarasov and his thugs steal Johns prized car and kill the puppy that was a last gift from his wife,John unleashes the remorseless killing machine within and seeks vengeance. Meanwhile, Iosefs father -- Johns former colleague -- puts a huge bounty on Johns head."});
 });
 
 

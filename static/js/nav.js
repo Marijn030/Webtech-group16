@@ -11,11 +11,11 @@ function createli(link, name, optionalClass) {
 
 let nav = document.getElementsByTagName('nav')[0];
 let ul = document.createElement('ul');
-let login = (createli('login.html', 'Login', null));
+let login = (createli('/login', 'Login', null));
 login.style.cssFloat = 'right';
-ul.append(createli('index.html', 'Home', null));
-ul.append(createli('store.html', 'Buy ticket', null));
-ul.append(createli('profile.html', 'Profile', null));
+ul.append(createli('/', 'Home', null));
+ul.append(createli('/store', 'Buy ticket', null));
+ul.append(createli('/userprofile', 'Profile', null));
 ul.append(login);
 
 nav.appendChild(ul);
