@@ -32,6 +32,14 @@ app.get("/", function(req, res){
         //can be visited at http://localhost:8016
     });
 });
+app.get("/store", function (req, res) {
+    fs.readFile('static/web_pages/store.html', function (err, data) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+        //can be visited at http://localhost:8016
+    });
+});
 app.get("/movies", (req, res) => {
     var db = new sqlite3.Database("cinema");
     db.serialize(function () {
@@ -58,7 +66,6 @@ app.get("/userprofile", function (req, res) {
         //can be visited at http://localhost:8016
     });
 });
-
 app.get("/clickedmovie/:movid", function (req, res) {
     try{
         var movid = parseInt(req.params.movid, 10);
