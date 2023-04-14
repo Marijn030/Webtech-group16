@@ -9,6 +9,7 @@ const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const pug = require("pug");
+const cookieParser = require("cookie-parser");
 
 //setup for the server beforehand
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
