@@ -7,6 +7,7 @@ const fs = require("fs");
 const url = require('url');
 const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 //setup for the server beforehand
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
