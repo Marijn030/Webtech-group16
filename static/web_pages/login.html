@@ -20,15 +20,19 @@
     <nav></nav>
     <main>
         <h2>Login Page</h2>
-        <form action="/login" method="post">
-            <label>Username:</label>
-            <input type="text" placeholder="Username" required>
+        <form id="login" action="/login" method="post">
+            <label form="login" for="user">Username:</label>
+            <input id="user" type="text" placeholder="Username" required autofocus>
         </br>
-            <label>Password</label>
-            <input type="password" placeholder="Password" required>
+            <label form="login" for="passw">Password</label>
+            <input id="passw" type="password" placeholder="Password" required>
             </br>
-            <input type="submit">
+            <input type="submit" value="Login">
         </form>
+        <section>If you are not yet part of us, please follow this link to: 
+            <a href="/register">Register</a>
+            with us.
+        </section>
     </main>
 </body>
 

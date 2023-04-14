@@ -21,20 +21,27 @@
     <main>
         <h2>Register Page</h2>
         <p>Thank you for considering joining us!</p>
-        <form action="/register" method="post">
-            <label>Name:</label>
-            <input type="text" placeholder="John Wick" required>
-            
-            <label>Name:</label>
-            <input type="text" placeholder="John Wick" required>
-            <label>Name:</label>
-            <input type="text" placeholder="John Wick" required>
-
-            <label>Username:</label>
-            <input type="text" placeholder="Username" required>
-            <label>Password</label>
-            <input type="password" placeholder="Password" required>
-            <input type="submit">
+        <form id="register" action="/register" method="post">
+            <!--Required info: name, email, username, password, address, credit card-->
+            <label form="register" for="client">Name:</label>
+            <input id="client" type="text" placeholder="John Wick" required autofocus>
+        </br>
+            <label form="register" for="email">Email:</label>
+            <input id="email" type="email" placeholder="babayaga@email.com" required>
+        </br>
+            <label form="register" for="user">Username:</label>
+            <input id="user" type="text" placeholder="Username" required>
+        </br>
+            <label form="register" for="pw">Password</label>
+            <input id="pw" type="password" placeholder="Password" required>
+        </br>
+            <label form="register" for="address">Address:</label>
+            <input id="address" type="text" placeholder=" Wick" required>
+        </br>
+            <label form="register" for="credit">Credit Card:</label>
+            <input id="credit" type="text" placeholder="John Wick" required>
+        </br>
+            <input type="submit" value="Register">
         </form>
     </main>
 </body>
