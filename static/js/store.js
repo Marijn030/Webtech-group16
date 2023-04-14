@@ -4,5 +4,5 @@ select.addEventListener("change", movieSelected, false);
 
 function movieSelected() {
     let label = document.getElementsByTagName('label')[1];
-    label.innerText = "You selected the moviescreening: " + this.childNodes[0].innerText;
+    label.innerText = "You selected the moviescreening: " + select.value;
 }
