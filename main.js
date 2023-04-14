@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const path = require("path");
 const fs = require("fs");
 const url = require('url');
-const sqlite3 = require("sqlite3");
+const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require('bcrypt');
 
 //setup for the server beforehand
