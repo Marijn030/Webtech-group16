@@ -53,6 +53,7 @@ function updatePage() {
             else{
                 labels[i%10].innerText = "";
                 buttons[i % 10].innerText = "";
+                buttons[i % 10].setAttribute('id', "0");
                 buttons[i % 10].setAttribute('style', 'display:none');
             }
         }

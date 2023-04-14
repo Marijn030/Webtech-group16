@@ -43,7 +43,7 @@ app.get("/store", function (req, res) {
 app.get("/movies", (req, res) => {
     var db = new sqlite3.Database("cinema");
     db.serialize(function () {
-        db.all("SELECT title AS title, movie.id AS id FROM moviescreening, movie WHERE movie.id = moviescreening.id AND strftime('%s', 'now') < strftime('%s', datetime)", (err, rows) => {
+        db.all("SELECT title AS title, movie.id AS id FROM moviescreening, movie WHERE movie.id = moviescreening.movie_id AND strftime('%s', 'now') < strftime('%s', datetime)", (err, rows) => {
             res.json(rows);
         });
     })

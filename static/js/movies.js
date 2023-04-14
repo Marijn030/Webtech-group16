@@ -31,6 +31,7 @@ fetch("/movies").then(c => c.json()).then(movies => {
         else{
             labels[i%10].innerText = "";
             buttons[i % 10].innerText = "";
+            buttons[i % 10].setAttribute('id', "");
             buttons[i % 10].setAttribute('style', 'display:none');
         }
     }
