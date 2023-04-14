@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Moviestore Login</title>
+    <meta charset="UTF-8">
+    <!--meta data for assisting search engines-->
+    <meta name="keywords" content="profile">
+    <meta name="description" content="This is the profile page for our cinema">
+    <meta name="author" content="Taylan Batman, Jonathan van Dijk, Marijn Luime">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <link rel="stylesheet" href="../css/general.css">
+    <script src="../js/nav.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Moviestore</h1>
+    </header>
+    <nav></nav>
+    <main>
+        <h2>Login Page</h2>
+        <form id="login" action="/login" method="post">
+            <label form="login" for="user">Username:</label>
+            <input id="user" name="name" type="text" placeholder="Username" required autofocus>
+        </br>
+            <label form="login" for="passw">Password</label>
+            <input id="passw" name="password" type="password" placeholder="Password" required>
+            </br>
+            <input type="submit" value="Log in">
+        </form>
+        <section>If you are not yet part of us: 
+            <a href="/register">Register</a>
+            with us.
+        </section>
+    </main>
+</body>
+
+</html>

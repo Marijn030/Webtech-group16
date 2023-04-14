@@ -11,11 +11,16 @@ function createli(link, name, optionalClass) {
 
 let nav = document.getElementsByTagName('nav')[0];
 let ul = document.createElement('ul');
-let login = (createli('/login', 'Login', null));
+//Links around the site
+let home = createli('/', 'Home', null);
+let store = createli('/store', 'Buy ticket', null);
+let profile = createli('/profile', 'Profile', null);
+let login = createli('/login', 'Login', null);
 login.style.cssFloat = 'right';
-ul.append(createli('/', 'Home', null));
-ul.append(createli('/store', 'Buy ticket', null));
-ul.append(createli('/userprofile', 'Profile', null));
+//add them to the tree
+ul.append(home);
+ul.append(store);
+ul.append(profile);
 ul.append(login);
 
 nav.appendChild(ul);

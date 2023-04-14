@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Moviestore Register</title>
+    <meta charset="UTF-8">
+    <!--meta data for assisting search engines-->
+    <meta name="keywords" content="profile">
+    <meta name="description" content="This is the profile page for our cinema">
+    <meta name="author" content="Taylan Batman, Jonathan van Dijk, Marijn Luime">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0">
+    <link rel="stylesheet" href="../css/general.css">
+    <script src="../js/nav.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>Moviestore</h1>
+    </header>
+    <nav></nav>
+    <main>
+        <h2>Register Page</h2>
+        <p>Thank you for considering joining us!</p>
+        <form id="register" action="/register" method="post">
+            <!--Required info: name, email, username, password, address, credit card-->
+            <label form="register" for="client">Name:</label>
+            <input id="client" name="name" type="text" placeholder="John Wick" required autofocus>
+        </br>
+            <label form="register" for="email">Email:</label>
+            <input id="email" name="email" type="email" placeholder="babayaga@email.com" required>
+        </br>
+            <label form="register" for="user">Username:</label>
+            <input id="user" name="user" type="text" placeholder="Username" required>
+        </br>
+            <label form="register" for="pw">Password</label>
+            <input id="pw" name="password" type="password" placeholder="Password" required>
+        </br>
+            <label form="register" for="address">Address:</label>
+            <input id="address" name="address" type="text" placeholder="Leuvenlaan 343 Utrecht" required>
+        </br>
+            <label form="register" for="credit">Credit Card:</label>
+            <input id="credit" name="credit_card" type="text" placeholder="1111 2222 3333 4444" required>
+        </br>
+            <input type="submit" value="Register">
+        </form>
+    </main>
+</body>
+
+</html>
