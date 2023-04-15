@@ -132,7 +132,7 @@ app.post("/login", async function(req, res){
     }
     else{
         req.session.userId = user.id;
-        res.redirect('/');
+        return res.send('<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>');
     }
 });
 //register part
@@ -180,7 +180,7 @@ app.post("/register", async (req, res) => {
         }
         var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)});
         req.session.userId = user.id;
-        return res.redirect('/register');
+        return res.send('<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>');;
     }
 });
 
