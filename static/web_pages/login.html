@@ -22,10 +22,10 @@
         <h2>Login Page</h2>
         <form id="login" action="/login" method="post">
             <label form="login" for="user">Username:</label>
-            <input id="user" name="user" type="text" placeholder="Username" required autofocus>
+            <input id="user" name="user" type="text" placeholder="Username" pattern="[A-Za-z0-9_]{5,15}" required autofocus>
         <br>
             <label form="login" for="passw">Password</label>
-            <input id="passw" name="password" type="password" placeholder="Password" size="21" required>
+            <input id="passw" name="password" type="password" placeholder="Password" pattern="[a-zA-Z][a-zA-Z0-9-_.#]{5,}" size="21" required>
         <br>
             <input type="submit" value="Log in">
         </form>

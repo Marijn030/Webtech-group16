@@ -30,16 +30,16 @@
             <input id="email" name="email" type="email" placeholder="babayaga@email.com" size="34" required>
         <br>
             <label form="register" for="user">Username:</label>
-            <input id="user" name="user" type="text" placeholder="Username" size="30" required>
+            <input id="user" name="user" type="text" placeholder="Username" pattern="[A-Za-z0-9_]{5,15}"  size="30" required>
         <br>
             <label form="register" for="pw">Password</label>
-            <input id="pw" name="password" type="password" placeholder="Password" size="31" required>
+            <input id="pw" name="password" type="password" placeholder="Password" pattern="[a-zA-Z][a-zA-Z0-9-_.#!]{5,}" size="31" required>
         <br>
             <label form="register" for="address">Address:</label>
             <input id="address" name="address" type="text" placeholder="Leuvenlaan 343 3512 JE Utrecht" size="32" required>
         <br>
             <label form="register" for="credit">Credit Card:</label>
-            <input id="credit" name="credit_card" type="text" placeholder="1111222233334444" size="29" required>
+            <input id="credit" name="credit_card" type="text" placeholder="1111222233334444" pattern="[0-9]{15,17}" size="29" required>
         <br>
             <input type="submit" value="Register">
         </form>
