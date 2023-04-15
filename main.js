@@ -96,22 +96,24 @@ app.get("/login", function (req, res) {
         return res.end();
     });
 });
-app.post("/login", function(req, res){
+app.post("/login", async function(req, res,next){
     var db = new sqlite3.Database("cinema");
-
-    try{
-        let  q = "SELECT password FROM users where login=?";
-        db.query(q, [req.body.user, req.body.password], (err, rows) => {
-            if (err) throw err;
-            
-            db.each("SELECT actor AS acto FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if (err) { next(new Error("error while fetching from database")); }
-                else { actor = rows.acto; }
-            });
+    let q = "SELECT password FROM users where login=?";
+    db.serialize(() => {
+        db.each(q, [req.body.user], (err, rows) => {
+            if (err) { next(new Error("error while fetching from database")); }
+            else {
+                var retrievedPassword = rows.password;
+                if(retrievedPassword == null || retrievedPassword == undefined)
+                    next(new Error("This combination is not in our system"));
+            }
         });
-    } catch(e){
-
-
+    });
+    if(bcrypt.compare(req.body.password, retrievedPassword)){
+        res.redirect('/');
+        res.end();
+    }else{
+        next(new Error("This combination is not in our system"));
     }
 
     res.end();
