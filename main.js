@@ -73,8 +73,26 @@ app.get("/profile",  async function (req, res) {
             db.close();
         })
     }
+    function getOrderHistory(userId){
+        const db = new sqlite3.Database("cinema");
+        return new Promise((resolve, reject) => {
+            db.serialize(function () {
+                db.all("SELECT title, datetime FROM orderhistory, moviescreening, movie WHERE orderhistory.user_id = ? AND moviescreening.id = orderhistory.moviescreening_id AND moviescreening.movie_id = movie.id", [userId], (err, rows) => {
+                    if(err){ return reject(err);}
+                    console.log(rows);
+                    return resolve(rows); //returns JSON object
+                });
+            })
+            db.close();
+        })
+    }
     var user = await getUserById(req.session.userId);
-    res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : "test"});
+    var orderhistory = await getOrderHistory(req.session.userId);
+    var ohistory = "";
+    for(let x of orderhistory){
+        ohistory += "title: " + x.title + ", time of airing: " + x.datetime + ". <br> "; 
+    }
+    res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : ohistory});
 });
 
 app.get("/store", function (req, res) {
