@@ -21,6 +21,7 @@ app.use(express.static(staticPath));
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(session({
+    secret:"Random Lock mlt", 
     saveUninitialized: true,
     resave: false
 }));
