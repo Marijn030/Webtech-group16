@@ -152,8 +152,8 @@ app.post("/register", async (req, res) => {
                         else{console.log(this.lastID); return resolve(this.lastID);}
                     });
                 })
+                db.close();
             });
-            db.close();
         }
         function getUserById(userId){
             const db = new sqlite3.Database("cinema");
