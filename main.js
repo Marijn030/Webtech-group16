@@ -60,13 +60,23 @@ app.get("/moviescreenings", (req, res) => {
     db.close();
 });
 
-app.get("/profile", isLoggedIn, function (req, res) {
-    fs.readFile('static/web_pages/userprofile.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
+app.get("/profile",  async function (req, res) {
+    function getUserById(userId){
+        const db = new sqlite3.Database("cinema");
+        return new Promise((resolve, reject) => {
+            db.serialize(function () {
+                db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
+                    if(err){ return reject(err);}
+                    return resolve(rows); //returns JSON object
+                });
+            })
+            db.close();
+        })
+    }
+    var user = await getUserById(req.session.userId);
+    res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : "test"});
 });
+
 app.get("/store", function (req, res) {
     fs.readFile('static/web_pages/store.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -122,6 +132,7 @@ app.post("/login", async function(req, res){
     }
     else{
         req.session.userId = user.id;
+        res.redirect('/');
     }
 });
 //register part
@@ -172,12 +183,6 @@ app.post("/register", async (req, res) => {
         return res.redirect('/register');
     }
 });
-
-
-function isLoggedIn(req, res, next){
-    return next();
-
-}
 
 //event listener for if the server shuts down?
 /*process.on('SIGINT', () => {
