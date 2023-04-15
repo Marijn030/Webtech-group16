@@ -19,8 +19,7 @@ app.use(express.static(staticPath));
 //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB.
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 app.set("views", path.resolve(__dirname, "views"));
-app.set("view engine", "pug");
-app.use(express.json);
+app.set("view engine", "pug"); 
 
 //var db = new sqlite3.Database("cinema");
 
