@@ -9,7 +9,6 @@ const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const pug = require("pug");
-const cookieParse = require('cookie-parser');
 
 //setup for the server beforehand
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
@@ -22,10 +21,12 @@ app.use(express.static(staticPath));
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(session({
-
+    saveUninitialized: true,
+    resave: false
 }));
 
 //var db = new sqlite3.Database("cinema");
+var currentSession; 
 
 //adding listening
 app.get("/", function(req, res){
@@ -145,7 +146,7 @@ app.post("/register", async (req, res) => {
 });
 
 
-
+//here we check if someone is logged in
 function isLoggedIn(req, res, next){
     return next();
 
