@@ -58,7 +58,7 @@ app.get("/moviescreenings", (req, res) => {
 });
 
 app.get("/profile", isLoggedIn, function (req, res) {
-    fs.readFile('static/web_pages/userprofile.html', function (err, data) {
+    fs.readFile('static/web_pages/profile.html', function (err, data) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(data);
         return res.end();
