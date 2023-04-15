@@ -20,11 +20,14 @@ app.use(express.static(staticPath));
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
+app.use(session({secret : "secret"}));
 
 //var db = new sqlite3.Database("cinema");
 
 //adding listening
 app.get("/", function(req, res){
+    const {userId} = req.session;
+    console.log(userId);
     fs.readFile('static/web_pages/index.html', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
@@ -96,10 +99,30 @@ app.get("/login", function (req, res) {
         return res.end();
     });
 });
-app.post("/login", function(req, res){
+app.post("/login", async function(req, res){
     const password = req.body.password;
     const login = req.body.userlogin;
-    
+    function getUserByLogin(login){
+        const db = new sqlite3.Database("cinema");
+        return new Promise((resolve, reject) => {
+            db.serialize(function () {
+                db.get("SELECT * FROM user WHERE user.login = ?", [login], (err, rows) => {
+                    if(err){ return reject(err);}
+                    return resolve(rows); //returns JSON object
+                });
+            })
+            db.close();
+        })
+    }
+    var user = await getUserByLogin(login);
+    console.log(user);
+    if(!user || user.password !== password){
+        res.setHeader('Content-type','text/html')
+        return res.send('<p> Incorrect password or username. </p> <a href="/login"> Retry </a>');
+    }
+    else{
+        req.session.userId = user.id;
+    }
 });
 //register part
 app.get("/register", function (req, res) {
@@ -110,20 +133,45 @@ app.get("/register", function (req, res) {
     });
 });
 app.post("/register", async (req, res) => {
-    var db = new sqlite3.Database("cinema");
-    try{
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        
-        res.redirect('/login');
-    } catch(e){
-        res.redirect('/register');
-        
+    const name = req.body.name; 
+    const email = req.body.email;
+    const login = req.body.login; console.log(login);
+    const pw = req.body.password; console.log(pw);
+    const address = req.body.address;
+    const ccard = req.body.credit;
+    if(!name || !email || !login || !pw || !address || !ccard){
+        res.send('<p> Invalid input. </p> <a href="/register"> Retry </a>');
     }
-
-    res.end();
-    db.close();
+    else{
+        function insertUser(n, e, l, p, a, c){
+            const db = new sqlite3.Database("cinema");
+            return new Promise((resolve, reject) => {
+                db.serialize(function () {
+                    db.run("INSERT INTO user (name, email, login, password, address, creditcard) VALUES (?, ?, ?, ?, ?, ?)", [n, e, l, p, a, c], function(err){
+                        if(err){return reject(err);}
+                        else{console.log(this.lastID); return resolve(this.lastID);}
+                    });
+                })
+            })
+            db.close();
+        }
+        function getUserById(userId){
+            const db = new sqlite3.Database("cinema");
+            return new Promise((resolve, reject) => {
+                db.serialize(function () {
+                    db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
+                        if(err){ return reject(err);}
+                        return resolve(rows); //returns JSON object
+                    });
+                })
+                db.close();
+            })
+        }
+        var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)});
+        req.session.userId = user.id;
+        return res.redirect('/register');
+    }
 });
-
 
 
 function isLoggedIn(req, res, next){
