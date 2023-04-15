@@ -152,7 +152,7 @@ app.post("/register", async (req, res) => {
                         else{console.log(this.lastID); return resolve(this.lastID);}
                     });
                 })
-            })
+            });
             db.close();
         }
         function getUserById(userId){
