@@ -9,6 +9,7 @@ const sqlite3 = require("sqlite3").verbose();
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const pug = require("pug");
+const cookieParse = require('cookie-parser');
 
 //setup for the server beforehand
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
@@ -19,7 +20,10 @@ app.use(express.static(staticPath));
 //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB.
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 app.set("views", path.resolve(__dirname, "views"));
-app.set("view engine", "pug"); 
+app.set("view engine", "pug");
+app.use(session({
+
+}));
 
 //var db = new sqlite3.Database("cinema");
 
@@ -111,11 +115,9 @@ app.post("/login", async function(req, res,next){
     });
     if(bcrypt.compare(req.body.password, retrievedPassword)){
         res.redirect('/');
-        res.end();
     }else{
         next(new Error("This combination is not in our system"));
     }
-
     res.end();
     db.close();
 });
