@@ -27,10 +27,15 @@ app.use(session({
 }));
 
 //var db = new sqlite3.Database("cinema");
-var currentSession; 
+var currentSession; //this saves the current session
 
 //adding listening
 app.get("/", function(req, res){
+    if(!req.session){ //if there is no session?
+        currentSession = req.session;
+        currentSession.users = [];
+    }
+
     fs.readFile('static/web_pages/index.html', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
@@ -116,6 +121,7 @@ app.post("/login", async function(req, res,next){
         });
     });
     if(bcrypt.compare(req.body.password, retrievedPassword)){
+        currentSession.users.push(req.body.user);
         res.redirect('/');
     }else{
         next(new Error("This combination is not in our system"));
@@ -149,8 +155,14 @@ app.post("/register", async (req, res) => {
 
 //here we check if someone is logged in
 function isLoggedIn(req, res, next){
-    return next();
-
+    currentSession= req.session;
+    if(currentSession.users !== []){
+        console.log(currentSession.users[0]);
+        return next();
+    } else{
+        res.redirect('/login');
+        res.end();
+    }
 }
 
 //event listener for if the server shuts down?
