@@ -20,7 +20,6 @@ app.use(express.static(staticPath));
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
-app.use(express.json);
 
 //var db = new sqlite3.Database("cinema");
 
@@ -98,25 +97,9 @@ app.get("/login", function (req, res) {
     });
 });
 app.post("/login", function(req, res){
-    var db = new sqlite3.Database("cinema");
-
-    try{
-        let  q = "SELECT password FROM users where login=?";
-        db.query(q, [req.body.user, req.body.password], (err, rows) => {
-            if (err) throw err;
-            
-            db.each("SELECT actor AS acto FROM movie WHERE rowid = " + movid, (err, rows) => {
-                if (err) { next(new Error("error while fetching from database")); }
-                else { actor = rows.acto; }
-            });
-        });
-    } catch(e){
-
-
-    }
-
-    res.end();
-    db.close();
+    const password = req.body.password;
+    const login = req.body.userlogin;
+    
 });
 //register part
 app.get("/register", function (req, res) {
