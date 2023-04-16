@@ -1,4 +1,4 @@
-//get all the moviescreenings to display on the home page index.html
+//get all the moviescreenings linked with a specific movie here
 fetch("/moviescreenings").then(c => c.json()).then(moviescreenings => {
     console.log(moviescreenings);
 
