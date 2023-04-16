@@ -7,12 +7,23 @@ A brief explanation of your web-site, the structure of your application, includi
 Logins and passwords of all registered users.
 The SQL definition of your database (the CREATE TABLE statements).
 
+--group id
 We are Group 16
+
+--names and student numbers all authors
 Our names are Marijn Luime(1921142), Jonathan van Dijk(4890477), Taylan Batman(9896392)
 See our website: http://webtech.science.uu.nl/group16/
---explain
+
+--explanation website
 we used the website https://www.perfomatix.com/nodejs-coding-standards-and-best-practices/ to base our behaviour and the design of our backend
-On our website the homepage displays all the movies on which you can click to go to their movie description page. In the navigation you can go to the store page to order tickets. In the navigation you can also go to the login page where you can also go to the register page. In the navigation you can also go to the profile page.
+On our website the homepage displays all the movies on which you can click to go to their movie description page. In the navigation you can go to the store page to order tickets. In the navigation you can also go to the login page where you can also go to the register page. In the navigation you can also go to the profile page and to the logout page.
+
+--structure application
+In the main.js file is all the node.js functionality or the server side code of our website. In there there are the middlewares, the logging, the error handling, the server setup and the get and post requests to run our website. In the cinema file is our database. In the view file are the pug files to render with views. In the static folder are all our html, css and javascript files. We have index, store, login and register html files. We have 1 css file for the entire application, namely general. We have multiple javascript files, often multiple per html file too, namely index, nav, movies, store, currentmovies and currentscreenings. Index and store are to handle events in their corresponding html files. nav is for the navigation bar in each website page. The other javascript files hold fetch statements to activate a database query in the main.js file.
+
+--structure database
+In the database there are the tables movie, director, writer, actor, moviescreening, user and order history. In the table movie there is all the information for the movie description page: title, genre, year, director, writer(s), actors, poster, trailer and plot. All the names of the people who worked on the film in their respective categories are separated in the attributes by a '-'. In moviescreening there is an id, a movie_id as a foreign key and a datetime. There can be multiple moviescreenings per movie, so there is an id for each moviescreening as well. In the table user all the required information for the user is present. In the table orderhistory there are the id's of the order itself (as a user can buy multiple tickets for a moviescreening), a moviescreening and of a user.
+
 --registered users logins and passwords
 RickV Veening.2000
 HenkNL HStraaten!
