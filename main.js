@@ -45,10 +45,11 @@ app.get("/movies", (req, res) => {
     db.close();
 });
 
-app.get("/moviescreenings", (req, res) => {
+app.post("/moviescreenings", (req, res) => {
+    var selectedMovieId = req.body.id;
     var db = new sqlite3.Database("cinema");
     db.serialize(function () {
-        db.all("SELECT * FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime)", (err, rows) => {
+        db.all("SELECT moviescreening.datetime FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime) AND moviescreening.movie_id = ?", [selectedMovieId], (err, rows) => {
             res.json(rows);
         });
     });
