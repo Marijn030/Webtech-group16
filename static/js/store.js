@@ -12,8 +12,8 @@ function movieSelected() {//updates the movie in the label with the value of the
 
     fetch("/moviescreenings").then(c => c.json()).then(moviescreenings => {  
         var select2 = document.getElementsByTagName('select')[1];
-
-        for (let i = 0; i < select2.length; i++) {
+        const length = select2.length-1;
+        for (let i = length; i >= 0; i--) {
             select2.remove(i);
         }
 
