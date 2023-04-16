@@ -12,49 +12,59 @@ header
 nav
 main
 script.
-  let headerElement = document.getElementsByTagName('header')[0];
-  let h1Element = document.createElement('h1');
+  let headerElement = document.getElementsByTagName('header')[0];//the header element on the page
+  let h1Element = document.createElement('h1');//the big title on the page for the header
   h1Element.appendChild(document.createTextNode("Cinema Utrecht Movie Description"));
   headerElement.appendChild(h1Element);
-  let mainElement = document.getElementsByTagName("main")[0];
-  let generalInfo = document.createElement('section');
-  let generalInfoTitle = document.createElement('h2');
+  let mainElement = document.getElementsByTagName("main")[0];//retrieves the main element
+  let generalInfo = document.createElement('section');//a new section that will encompass the general info of the movie
+  let generalInfoTitle = document.createElement('h2');//title for the section
   generalInfoTitle.appendChild(document.createTextNode("General information of the movie"));
   generalInfo.appendChild(generalInfoTitle);
-  generalInfo.appendChild(document.createTextNode("Title of the movie: " + "#{movietitle}" + ".")); //!!!
+  generalInfo.appendChild(document.createTextNode("Title of the movie: " + "#{movieTitle}" + ".")); 
   generalInfo.appendChild(document.createElement('br'));
-  generalInfo.appendChild(document.createTextNode("Genre of the movie: " + "#{moviegenre}" + ".")); //!!!
+  generalInfo.appendChild(document.createTextNode("Genre of the movie: " + "#{movieGenre}" + ".")); 
   generalInfo.appendChild(document.createElement('br'));
-  generalInfo.appendChild(document.createTextNode("Year of release: "+ "#{movieyear}" + ".")); //!!!
+  generalInfo.appendChild(document.createTextNode("Year of release: "+ "#{movieYear}" + ".")); 
   generalInfo.appendChild(document.createElement('br'));
-  generalInfo.appendChild(document.createTextNode("Director of the movie: " + "#{moviedirector}" + ".")); //!!!
+  generalInfo.appendChild(document.createTextNode("Director of the movie: " + "#{movieDirector}" + ".")); 
   generalInfo.appendChild(document.createElement('br'));
-  generalInfo.appendChild(document.createTextNode("Writer of the movie: " + "#{moviewriter}" + ".")); //!!!
+  let Writerdata = "Writer: ";//the string that is added before the writer names are added, this default value assumes 1 writer
+  let writerlist = "#{movieWriter}";//a string that contains the writers for this displayed movie, separated by -
+  let writers = writerlist.split("-");//cuts the writers string to make an array of all the writers of the displayed movie
+  if(writers.length > 1) {
+  Writerdata = "Writers: "	
+  }
+  for(i = 0; i < writers.length - 1; i++){//counter variable
+  Writerdata += writers[i] + ", ";
+  }
+  Writerdata += writers[writers.length - 1] + ".";
+  generalInfo.appendChild(document.createTextNode(Writerdata));
   generalInfo.appendChild(document.createElement('br'));
-  let Actordata = "Actors: ";
-  let actorlist = "#{actors}"
-  let actors = actorlist.split("-")
+  let Actordata = "Actors: ";//text that introduces the actors for this movie
+  let actorlist = "#{actors}";//string containing mentioned the actors separated by -
+  let actors = actorlist.split("-");//cuts the string to make array with the included actors
   for(i = 0; i < actors.length - 1; i++){
   Actordata += actors[i] + ", ";
   }
   Actordata += actors[actors.length - 1] + ".";
   generalInfo.appendChild(document.createTextNode(Actordata));
   mainElement.appendChild(generalInfo);
-  let movieInfo = document.createElement("section");
-  let movieInfoTitle = document.createElement('h2');
+  let movieInfo = document.createElement("section");//new section that includes the descriptive info of the movie, incl poster and trailer links
+  let movieInfoTitle = document.createElement('h2');//title for the description section
   movieInfoTitle.appendChild(document.createTextNode("Information about the content of the movie"));
   movieInfo.appendChild(movieInfoTitle);
-  let posterlink = document.createElement("a");
-  posterlink.setAttribute('href', '#{poster}'); //!!!
+  let posterlink = document.createElement("a");//link that leads to the poster of the displayed movie
+  posterlink.setAttribute('href', '#{poster}'); 
   posterlink.appendChild(document.createTextNode("Link to the promotional poster"));
   movieInfo.appendChild(posterlink);
   movieInfo.appendChild(document.createElement('br'));
-  let trailerlink = document.createElement("a");
-  trailerlink.setAttribute('href', '#{trailer}'); //!!!
+  let trailerlink = document.createElement("a");//link that leads to the (official) trailer of the movie
+  trailerlink.setAttribute('href', '#{trailer}'); 
   trailerlink.appendChild(document.createTextNode("Link to the trailer for the movie"));
   movieInfo.appendChild(trailerlink);
   movieInfo.appendChild(document.createElement('br'));
-  let plot = document.createElement('p');
+  let plot = document.createElement('p');//paragraph element/node that will summarize the plot
   plot.appendChild(document.createTextNode("Plot: " + "#{plot}"));
   movieInfo.appendChild(plot);
   mainElement.appendChild(movieInfo);

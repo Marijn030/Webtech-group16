@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--this is the register page where the user attempts to register to the database. It has some client-side requirements for the inputs-->
 <head>
     <title>Cinema Utrecht Register Page</title>
     <meta charset="UTF-8">
@@ -22,22 +22,21 @@
         <h2>Register Page</h2>
         <p>Thank you for considering joining us!</p>
         <form id="register" action="/register" method="post">
-            <!--Required info: name, email, username, password, address, credit card-->
-            <label form="register" for="client">Name:</label>
+            <label form="register" for="client">Name (min 4 chars):</label>
             <input id="client" name="name" type="text" placeholder="John Wick" pattern="[a-zA-Z ]{3,20}" size="34" required autofocus>
             <br>
             <label form="register" for="email">Email:</label>
             <input id="email" name="email" type="email" placeholder="babayaga@email.com" pattern="[A-Za-z0-9_.#@!]{3=5,}" size="34" required>
             <br>
-            <label form="register" for="login">Login:</label>
+            <label form="register" for="userlogin">Login (min 4 chars):</label>
             <input id="userlogin" name="userlogin" type="text" placeholder="Login" pattern="[a-zA-Z][a-zA-Z0-9]{3,20}" size="34" required>
             <br>
-            <label form="register" for="pw">Password</label>
+            <label form="register" for="pw">Password (min 6 chars) </label>
             <input id="pw" name="password" type="password" placeholder="Password" pattern="[a-zA-Z][a-zA-Z0-9-_.#!@*]{5,}" size="31" required>
             <br>
             <label form="register" for="address">Address:</label>
             <input id="address" name="address" type="text" placeholder="Leuvenlaan 343 3512 JE Utrecht" pattern="[a-zA-Z ][a-zA-Z0-9 ]{5,}" size="32" required>
-            <br>
+        <br>
             <label form="register" for="credit">Credit Card:</label>
             <input id="credit" name="credit_card" type="text" placeholder="1111222233334444" pattern="[0-9]{16,16}" size="29" required>
             <br>
