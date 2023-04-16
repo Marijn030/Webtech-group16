@@ -2,7 +2,7 @@
 it also renders the different parts about the button that loads the next 10 movies in the database
 */
 //get all the movies to display on the home page index.html
-fetch("/movies").then(c => c.json()).then(movies => {
+fetch("/group16/movies").then(c => c.json()).then(movies => {
     var h3 = document.getElementsByTagName('h3')[0];//the header that tells the user what set they are on (which 10 movies)
     var text = String(h3.innerText);//the text that is contained in the defined header h3 element
     var strings = text.split(' '); //array where the text is split up so the current set can be retrieved off the html page
