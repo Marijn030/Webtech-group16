@@ -21,7 +21,7 @@ app.use(express.static(staticPath));
 //However tag-only HTML is considered static, since the tags themselves are consistent.
 app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
-app.use(session({secret : "secret"}));
+app.use(session({secret : "verysecret276834180"}));
 
 //adding listening to http requests
 //this handles the request for the home page

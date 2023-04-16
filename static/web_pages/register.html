@@ -22,13 +22,13 @@
         <h2>Register Page</h2>
         <p>Thank you for considering joining us!</p>
         <form id="register" action="/register" method="post">
-            <label form="register" for="client">Name:</label>
+            <label form="register" for="client">Name (min 4 chars):</label>
             <input id="client" name="name" type="text" placeholder="John Wick" pattern="[a-zA-Z ]{3,20}" size="34" required autofocus>
             <br>
             <label form="register" for="email">Email:</label>
             <input id="email" name="email" type="email" placeholder="babayaga@email.com" pattern="[A-Za-z0-9_.#@!]{3=5,}" size="34" required>
             <br>
-            <label form="register" for="userlogin">Login:</label>
+            <label form="register" for="userlogin">Login (min 4 chars):</label>
             <input id="userlogin" name="userlogin" type="text" placeholder="Login" pattern="[a-zA-Z][a-zA-Z0-9]{3,20}" size="34" required>
             <br>
             <label form="register" for="pw">Password (min 6 chars) </label>
