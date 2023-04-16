@@ -184,10 +184,10 @@ app.get("/register", function (req, res) {
 app.post("/register", async (req, res) => {
     const name = req.body.name; //the client's name
     const email = req.body.email; // the input email
-    const login = req.body.login; // the given login
+    const login = req.body.userlogin; // the given login
     const pw = req.body.password; //the given password
     const address = req.body.address; //the input address
-    const ccard = req.body.credit; //the client's credit card number
+    const ccard = req.body.credit_card; //the client's credit card number
     if(!name || !email || !login || !pw || !address || !ccard){
         res.render('notification', {content: '<p> Something appears to be missing. </p> <a href="/register"> Retry </a>'});
     }
