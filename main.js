@@ -58,7 +58,7 @@ app.get("/moviescreenings", (req, res) => {
 //user wants to see their profile page
 app.get("/profile",  async function (req, res) {
     if(!req.session.userId){
-        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/group16/login"> Log in </a>'});
+        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="../group16/login"> Log in </a>'});
     }
     else{
         function getUserById(userId){//inputs the id (in the database) from the user and outputs a JSON object of that user
@@ -98,7 +98,7 @@ app.get("/profile",  async function (req, res) {
 //retrieves the store page and sends it to the user, unless the user is not logged in
 app.get("/store", function (req, res) {
     if(!req.session.userId){
-        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/group16/login"> Log in </a>'});
+        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="../group16/login"> Log in </a>'});
     }
     else{
         fs.readFile('static/web_pages/store.html', function (err, data) {//write the store page to the response to user
@@ -114,7 +114,7 @@ app.post("/buyticket", async function (req, res) {
     var userId = req.session.userId;
     var screeningId = req.body.moviescreeningid;
     if (!userId || !screeningId) {
-        res.render('notification', { content: '<p> Something appears to be missing. </p> <a href="/group16/store"> Retry </a>' });
+        res.render('notification', { content: '<p> Something appears to be missing. </p> <a href="../group16/store"> Retry </a>' });
     }
     else {
         function insertOrder(u, s) { //attempts to insert the order into the database
@@ -142,7 +142,7 @@ app.post("/buyticket", async function (req, res) {
             })
         }
         var order = await insertOrder(userId, screeningId).then(insertId => { return getOrderById(insertId) }); //saves user locally, if the user is successfully inserted into database
-        return res.render('notification', { content: '<p> Your order has been confirmed. </p> <a href="/group16/store"> Go back to the store </a>' });
+        return res.render('notification', { content: '<p> Your order has been confirmed. </p> <a href="../group16/store"> Go back to the store </a>' });
     }
 });
 
@@ -166,7 +166,7 @@ app.get("/clickedmovie/:movId", function (req, res, next) {
 //user requests the login page, and is shown a different page if already logged in
 app.get("/login", function (req, res) {
     if(req.session.userId){
-        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/group16"> Home </a>'});
+        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="../group16"> Home </a>'});
     }
     else{
         fs.readFile('static/web_pages/login.html', function (err, data) {//send login page to anonymous user
@@ -195,17 +195,17 @@ app.post("/login", async function(req, res){
     }
     var user = await getUserByLogin(login);//saves the user locally
     if(!user || user.password !== password){
-        return res.render('notification', {content: '<p> Incorrect password or username. </p> <a href="/group16/login"> Retry </a>'});
+        return res.render('notification', {content: '<p> Incorrect password or username. </p> <a href="../group16/login"> Retry </a>'});
     }
     else{
         req.session.userId = user.id;//user id is saved into the session
-        return res.render('notification', {content: '<p> Login succeeded. </p> <a href="/group16"> Go back to homepage </a>'});
+        return res.render('notification', {content: '<p> Login succeeded. </p> <a href="../group16"> Go back to homepage </a>'});
     }
 });
 //user wants to see the register page, and receives that only if not already logged in, otherwise user is notified of logged in status
 app.get("/register", function (req, res) {
     if(req.session.userId){
-        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/group16"> Home </a>'});
+        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="../group16"> Home </a>'});
     }
     else{
         fs.readFile('static/web_pages/register.html', function (err, data) {
@@ -224,7 +224,7 @@ app.post("/register", async (req, res) => {
     const address = req.body.address; //the input address
     const ccard = req.body.credit_card; //the client's credit card number
     if(!name || !email || !login || !pw || !address || !ccard){
-        res.render('notification', {content: '<p> Something appears to be missing. </p> <a href="/group16/register"> Retry </a>'});
+        res.render('notification', {content: '<p> Something appears to be missing. </p> <a href="../group16/register"> Retry </a>'});
     }
     else{
         function insertUser(n, e, l, p, a, c){ //attempts to insert the user into the database, and returns their attributed id on success
@@ -253,7 +253,7 @@ app.post("/register", async (req, res) => {
         }
         var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)}); //saves user locally, if the user is successfully inserted into database
         req.session.userId = user.id;//the user's id is saved into the session
-        return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="/group16"> Go back to homepage </a>'});
+        return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="../group16"> Go back to homepage </a>'});
     }
 });
 
@@ -261,10 +261,10 @@ app.post("/register", async (req, res) => {
 app.get("/logout", function (req, res) {
     if(!req.session.userId){
         //user is notified they are not logged in
-        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/group16"> Home </a>'});
+        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="../group16"> Home </a>'});
     }
     else{
-        res.render('notification', {content: '<p> Are you sure you want to log out? </p> <br> <a href="/logoutYes"> Yes </a> <br> <a href="/group16"> No </a>'});
+        res.render('notification', {content: '<p> Are you sure you want to log out? </p> <br> <a href="/logoutYes"> Yes </a> <br> <a href="../group16"> No </a>'});
     }
 });
 //the user confirms that they want to log out of their account and is notified of their logout if the session is successfully destroyed
@@ -274,11 +274,11 @@ app.get("/logoutyes", function (req, res, next) {
             if(err){
                 return next("Something went wrong when logging out");
             }
-            else{res.render('notification', {content:'<p> Logout succesful! Go back to the homepage: </p> <a href="/group16"> Home </a>'})}
+            else{res.render('notification', {content:'<p> Logout succesful! Go back to the homepage: </p> <a href="../group16"> Home </a>'})}
         });
     }
     else{
-        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/group16"> Home </a>'});
+        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="../group16"> Home </a>'});
     }
 });
 //the error middleware that sends the given error message back to the user. Called upon if next is called with an error parameter
