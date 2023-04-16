@@ -167,7 +167,7 @@ app.post("/login", async function(req, res){
         return res.render('notification', {content: '<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
-//register part
+//user wants to see the register page, and receives that only if not already logged in, otherwise user is notified of logged in status
 app.get("/register", function (req, res) {
     if(req.session.userId){
         return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
@@ -180,21 +180,22 @@ app.get("/register", function (req, res) {
         });
     }
 });
+//user attempts to register with us and is registered and logged in on success, otherwise notified of failure 
 app.post("/register", async (req, res) => {
-    const name = req.body.name; 
-    const email = req.body.email;
-    const login = req.body.login;
-    const pw = req.body.password;
-    const address = req.body.address;
-    const ccard = req.body.credit;
+    const name = req.body.name; //the client's name
+    const email = req.body.email; // the input email
+    const login = req.body.login; // the given login
+    const pw = req.body.password; //the given password
+    const address = req.body.address; //the input address
+    const ccard = req.body.credit; //the client's credit card number
     if(!name || !email || !login || !pw || !address || !ccard){
-        res.render('notification', {content: '<p> Invalid input. </p> <a href="/register"> Retry </a>'});
+        res.render('notification', {content: '<p> Something appears to be missing. </p> <a href="/register"> Retry </a>'});
     }
     else{
-        function insertUser(n, e, l, p, a, c){
+        function insertUser(n, e, l, p, a, c){ //attempts to insert the user into the database, and returns their attributed id on success
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
-                db.serialize(function () {
+                db.serialize(function () {//inserts the information into the database
                     db.run("INSERT INTO user (name, email, login, password, address, creditcard) VALUES (?, ?, ?, ?, ?, ?)", [n, e, l, p, a, c], function(err){
                         if(err){return reject(err);}
                         else{return resolve(this.lastID);}
@@ -203,10 +204,10 @@ app.post("/register", async (req, res) => {
                 db.close();
             });
         }
-        function getUserById(userId){
+        function getUserById(userId){//gets the user as json object based on the received id
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
-                db.serialize(function () {
+                db.serialize(function () {//attempts to find the user in the database
                     db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
                         if(err){ return reject(err);}
                         return resolve(rows); //returns JSON object
@@ -215,21 +216,22 @@ app.post("/register", async (req, res) => {
                 db.close();
             })
         }
-        var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)});
-        req.session.userId = user.id;
+        var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)}); //saves user locally, if the user is successfully inserted into database
+        req.session.userId = user.id;//the user's id is saved into the session
         return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
-
+//user suggested they might want to log out, and are asked to confirm that in the page sent to them in the response, if they are logged in
 app.get("/logout", function (req, res) {
     if(!req.session.userId){
+        //user is notified they are not logged in
         res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
     }
     else{
         res.render('notification', {content: '<p> Are you sure you want to log out? </p> <br> <a href="/logoutYes"> Yes </a> <br> <a href="/"> No </a>'});
     }
 });
-
+//the user confirms that they want to log out of their account and is notified of their logout if the session is successfully destroyed
 app.get("/logoutyes", function (req, res, next) {
     if(req.session.id){
         req.session.destroy(err => {
@@ -243,7 +245,7 @@ app.get("/logoutyes", function (req, res, next) {
         res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
     }
 });
-
+//the error middleware that sends the given error message back to the user. Called upon if next is called with an error parameter
 app.use(function(err, req, res, next){
     if(err.message){
         res.status(500).send("Error: " + err.message);
@@ -251,4 +253,4 @@ app.use(function(err, req, res, next){
     else{res.status(500).send('Something has failed!');}
 });
 
-app.listen(8016); //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css
+app.listen(8016); //the app listens to port 8016
