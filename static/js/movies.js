@@ -1,4 +1,4 @@
-/*This script loads 10 movies into the slots they go into on index.html with some information
+/*This script loads the first 10 movies into the slots they go into on index.html with some information
 it also renders the different parts about the button that loads the next 10 movies in the database
 */
 //get all the movies to display on the home page index.html
