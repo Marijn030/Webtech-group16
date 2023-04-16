@@ -26,7 +26,7 @@ app.use(session({secret : "secret"}));
 //adding listening to http requests
 //this handles the request for the home page
 app.get("/", function(req, res){
-    const {userId} = req.session;//pulls the session from the request into a local object
+    const {userId} = req.session;//pulls the session from the request into a local object with the (possible) userId
     if(!userId) {console.log("currently not logged in")}
     fs.readFile('static/web_pages/index.html', function(err, data) {//gives the user the home page
         res.writeHead(200, {'Content-Type': 'text/html'});
@@ -34,9 +34,9 @@ app.get("/", function(req, res){
         return res.end();
     });
 });
-//handles the request to see the movies in our database
+//handles the request to see the movies in our database is used by index.js to receive the info
 app.get("/movies", (req, res) => {
-    var db = new sqlite3.Database("cinema");
+    var db = new sqlite3.Database("cinema");//opens the database for use
     db.serialize(function () {
         db.all("SELECT title AS title, movie.id AS id FROM moviescreening, movie WHERE movie.id = moviescreening.movie_id AND strftime('%s', 'now') < strftime('%s', datetime)", (err, rows) => {
             res.json(rows);
@@ -45,9 +45,10 @@ app.get("/movies", (req, res) => {
     db.close();
 });
 
+//??
 app.post("/moviescreenings", (req, res) => {
-    var selectedMovieId = req.body.id;
-    var db = new sqlite3.Database("cinema");
+    var selectedMovieId = req.body.id;//
+    var db = new sqlite3.Database("cinema");//opens the database for use
     db.serialize(function () {
         db.all("SELECT moviescreening.datetime FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime) AND moviescreening.movie_id = ?", [selectedMovieId], (err, rows) => {
             res.json(rows);
@@ -56,15 +57,16 @@ app.post("/moviescreenings", (req, res) => {
     db.close();
 });
 
+//user wants to see their profile page
 app.get("/profile",  async function (req, res) {
     if(!req.session.userId){
         res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>'});
     }
     else{
-        function getUserById(userId){
-            const db = new sqlite3.Database("cinema");
+        function getUserById(userId){//inputs the id (in the database) from the user and outputs a JSON object of that user
+            const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
-                db.serialize(function () {
+                db.serialize(function () {//finds the user in the database
                     db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
                         if(err){ return reject(err);}
                         return resolve(rows); //returns JSON object
@@ -73,10 +75,10 @@ app.get("/profile",  async function (req, res) {
                 db.close();
             });
         }
-        function getOrderHistory(userId){
-            const db = new sqlite3.Database("cinema");
+        function getOrderHistory(userId){//inputs a user's id and outputs their order history as a json object (incl. data: title and screening moment)
+            const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
-                db.serialize(function () {
+                db.serialize(function () {//finds the order history of the user
                     db.all("SELECT title, datetime FROM orderhistory, moviescreening, movie WHERE orderhistory.user_id = ? AND moviescreening.id = orderhistory.moviescreening_id AND moviescreening.movie_id = movie.id", [userId], (err, rows) => {
                         if(err){ return reject(err);}
                         return resolve(rows); //returns JSON object
@@ -85,22 +87,23 @@ app.get("/profile",  async function (req, res) {
                 db.close();
             });
         }
-        var user = await getUserById(req.session.userId);
-        var orderhistory = await getOrderHistory(req.session.userId);
-        var ohistory = "";
-        for(let ticket of orderhistory){
-            ohistory += "title: " + ticket.title + ", time of airing: " + ticket.datetime + ". <br> "; 
+        var user = await getUserById(req.session.userId);//saves the user object locally to be sent out to the page
+        var orderHistory = await getOrderHistory(req.session.userId);// saves the orderhistory object locally to be sent out to the page
+        var oHistory = ""; //an empty string to input the information of the user's order history
+        for(let ticket of orderHistory){// ticket is each order the user has placed
+            oHistory += "title: " + ticket.title + ", time of airing: " + ticket.datetime + ". <br> "; 
         }
-        res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : ohistory});    
+        res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : oHistory});    
     }
 });
 
+//retrieves the store page and sends it to the user, unless the user is not logged in
 app.get("/store", function (req, res) {
     if(!req.session.userId){
         res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>'});
     }
     else{
-        fs.readFile('static/web_pages/store.html', function (err, data) {
+        fs.readFile('static/web_pages/store.html', function (err, data) {//write the store page to the response to user
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(data);
             return res.end();
@@ -108,13 +111,14 @@ app.get("/store", function (req, res) {
     }
 });
 
-app.get("/clickedmovie/:movid", function (req, res, next) {
-        if(!parseInt(req.params.movid, 10)){return(next(new Error("Invalid url.")));}
-        var movid = parseInt(req.params.movid, 10);
-        const db = new sqlite3.Database("cinema");
-        var title, genre, year, director, writer, actor, post, trail, pl;
+//renders each page with the information of the specific movie the user requested to see
+app.get("/clickedmovie/:movId", function (req, res, next) {
+        if(!parseInt(req.params.movId, 10)){return(next(new Error("Invalid url.")));}
+        var movId = parseInt(req.params.movId, 10);//the id of the movie the user wants to investigate
+    const db = new sqlite3.Database("cinema");//opens the database for use
+        var title, genre, year, director, writer, actor, post, trail, pl;//these save all the information about the movie from the database
         db.serialize(function() {
-            db.get("SELECT * FROM movie WHERE rowid = " + movid, (err, rows) => {
+            db.get("SELECT * FROM movie WHERE rowid = ?", [movId], (err, rows) => {//inputs the one/zero result(s) for the movie requested into the page that displays the information
                 if(err){next(new Error("Fetching from database failed."));}
                 else if(!rows){next(new Error("Movie wasn't found in database."));}
                 else{title = rows.title; genre = rows.genre; year = rows.year; director = rows.director; writer = rows.writer; actor = rows.actor; post = rows.poster; trail = rows.trailer; pl = rows.plot;
@@ -124,27 +128,29 @@ app.get("/clickedmovie/:movid", function (req, res, next) {
         });
         db.close();
 });
-//login part
+//user requests the login page, and is shown a different page if already logged in
 app.get("/login", function (req, res) {
     if(req.session.userId){
         return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
     }
     else{
-        fs.readFile('static/web_pages/login.html', function (err, data) {
+        fs.readFile('static/web_pages/login.html', function (err, data) {//send login page to anonymous user
             res.writeHead(200, { 'Content-Type': 'text/html' });
             res.write(data);
             return res.end();
         });
     }
 });
+//user makes request to log in, we check if they have the correct password and login,
+//on succes -> notify and offer link to home page, failure -> notify and offer link to retry
 app.post("/login", async function(req, res){
     const password = req.body.password;
     const login = req.body.userlogin;
-    function getUserByLogin(login){
-        const db = new sqlite3.Database("cinema");
+    function getUserByLogin(login){//takes the login of the user and returns that user as json object
+        const db = new sqlite3.Database("cinema");//opens the database for use
         return new Promise((resolve, reject) => {
             db.serialize(function () {
-                db.get("SELECT * FROM user WHERE user.login = ?", [login], (err, rows) => {
+                db.get("SELECT * FROM user WHERE user.login = ?", [login], (err, rows) => {//try to find user by given login
                     if(err){ return reject(err);}
                     return resolve(rows); //returns JSON object
                 });
@@ -152,12 +158,12 @@ app.post("/login", async function(req, res){
             db.close();
         });
     }
-    var user = await getUserByLogin(login);
+    var user = await getUserByLogin(login);//saves the user locally
     if(!user || user.password !== password){
         return res.render('notification', {content: '<p> Incorrect password or username. </p> <a href="/login"> Retry </a>'});
     }
     else{
-        req.session.userId = user.id;
+        req.session.userId = user.id;//user id is saved into the session
         return res.render('notification', {content: '<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
@@ -186,7 +192,7 @@ app.post("/register", async (req, res) => {
     }
     else{
         function insertUser(n, e, l, p, a, c){
-            const db = new sqlite3.Database("cinema");
+            const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {
                     db.run("INSERT INTO user (name, email, login, password, address, creditcard) VALUES (?, ?, ?, ?, ?, ?)", [n, e, l, p, a, c], function(err){
@@ -198,7 +204,7 @@ app.post("/register", async (req, res) => {
             });
         }
         function getUserById(userId){
-            const db = new sqlite3.Database("cinema");
+            const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {
                     db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
