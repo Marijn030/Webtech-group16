@@ -157,7 +157,7 @@ app.get("/clickedmovie/:movId", function (req, res, next) {
                 if(err){next(new Error("Fetching from database failed."));}
                 else if(!rows){next(new Error("Movie wasn't found in database."));}
                 else{title = rows.title; genre = rows.genre; year = rows.year; director = rows.director; writer = rows.writer; actor = rows.actor; post = rows.poster; trail = rows.trailer; pl = rows.plot;
-                    res.render('movieinfo', {movietitle:title, moviegenre:genre, movieyear:year, moviedirector:director, moviewriter:writer,
+                    res.render('movieinfo', {movieTitle:title, movieGenre:genre, movieYear:year, movieDirector:director, movieWriter:writer,
                     actors: actor, poster:post, trailer:trail, plot:pl});}
             });
         });
