@@ -15,12 +15,15 @@ let ul = document.createElement('ul');
 let home = createli('/', 'Home', null);
 let store = createli('/store', 'Buy ticket', null);
 let profile = createli('/profile', 'Profile', null);
-let login = createli('/login', 'Login', null);
+let logout = createli('/logout', 'Logout', null);
+let login = createli('/login', 'Login/Register', null);
+logout.style.cssFloat = 'right';
 login.style.cssFloat = 'right';
 //add them to the tree
 ul.append(home);
 ul.append(store);
 ul.append(profile);
+ul.append(logout);
 ul.append(login);
 
 nav.appendChild(ul);

@@ -1,7 +1,5 @@
 //get all the movies to display on the home page index.html
 fetch("/movies").then(c => c.json()).then(movies => {
-    console.log(movies);
-
     var h3 = document.getElementsByTagName('h3')[0];
     var text = String(h3.innerText);
     var strings = text.split(' ');

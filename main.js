@@ -27,7 +27,7 @@ app.use(session({secret : "secret"}));
 //adding listening
 app.get("/", function(req, res){
     const {userId} = req.session;
-    console.log(userId);
+    if(!userId) {console.log("currently not logged in")}
     fs.readFile('static/web_pages/index.html', function(err, data) {
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
@@ -35,18 +35,13 @@ app.get("/", function(req, res){
     });
 });
 
-app.get("/home", function(req,res){
-    res.redirect('/');
-    res.end();
-
-});
 app.get("/movies", (req, res) => {
     var db = new sqlite3.Database("cinema");
     db.serialize(function () {
         db.all("SELECT title AS title, movie.id AS id FROM moviescreening, movie WHERE movie.id = moviescreening.movie_id AND strftime('%s', 'now') < strftime('%s', datetime)", (err, rows) => {
             res.json(rows);
         });
-    })
+    });
     db.close();
 });
 
@@ -56,33 +51,60 @@ app.get("/moviescreenings", (req, res) => {
         db.all("SELECT * FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime)", (err, rows) => {
             res.json(rows);
         });
-    })
+    });
     db.close();
 });
 
 app.get("/profile",  async function (req, res) {
-    function getUserById(userId){
-        const db = new sqlite3.Database("cinema");
-        return new Promise((resolve, reject) => {
-            db.serialize(function () {
-                db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
-                    if(err){ return reject(err);}
-                    return resolve(rows); //returns JSON object
-                });
-            })
-            db.close();
-        })
+    if(!req.session.userId){
+        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>'});
     }
-    var user = await getUserById(req.session.userId);
-    res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : "test"});
+    else{
+        function getUserById(userId){
+            const db = new sqlite3.Database("cinema");
+            return new Promise((resolve, reject) => {
+                db.serialize(function () {
+                    db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
+                        if(err){ return reject(err);}
+                        return resolve(rows); //returns JSON object
+                    });
+                });
+                db.close();
+            });
+        }
+        function getOrderHistory(userId){
+            const db = new sqlite3.Database("cinema");
+            return new Promise((resolve, reject) => {
+                db.serialize(function () {
+                    db.all("SELECT title, datetime FROM orderhistory, moviescreening, movie WHERE orderhistory.user_id = ? AND moviescreening.id = orderhistory.moviescreening_id AND moviescreening.movie_id = movie.id", [userId], (err, rows) => {
+                        if(err){ return reject(err);}
+                        return resolve(rows); //returns JSON object
+                    });
+                })
+                db.close();
+            });
+        }
+        var user = await getUserById(req.session.userId);
+        var orderhistory = await getOrderHistory(req.session.userId);
+        var ohistory = "";
+        for(let ticket of orderhistory){
+            ohistory += "title: " + ticket.title + ", time of airing: " + ticket.datetime + ". <br> "; 
+        }
+        res.render('userprofile', {name : user.name, email : user.email, login : user.login, password : user.password, address : user.address, creditcard : user.creditcard, history : ohistory});    
+    }
 });
 
 app.get("/store", function (req, res) {
-    fs.readFile('static/web_pages/store.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
+    if(!req.session.userId){
+        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>'});
+    }
+    else{
+        fs.readFile('static/web_pages/store.html', function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            return res.end();
+        });
+    }
 });
 
 app.get("/clickedmovie/:movid", function (req, res, next) {
@@ -103,11 +125,16 @@ app.get("/clickedmovie/:movid", function (req, res, next) {
 });
 //login part
 app.get("/login", function (req, res) {
-    fs.readFile('static/web_pages/login.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
+    if(req.session.userId){
+        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
+    else{
+        fs.readFile('static/web_pages/login.html', function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            return res.end();
+        });
+    }
 });
 app.post("/login", async function(req, res){
     const password = req.body.password;
@@ -122,36 +149,39 @@ app.post("/login", async function(req, res){
                 });
             })
             db.close();
-        })
+        });
     }
     var user = await getUserByLogin(login);
-    console.log(user);
     if(!user || user.password !== password){
-        res.setHeader('Content-type','text/html')
-        return res.send('<p> Incorrect password or username. </p> <a href="/login"> Retry </a>');
+        return res.render('notification', {content: '<p> Incorrect password or username. </p> <a href="/login"> Retry </a>'});
     }
     else{
         req.session.userId = user.id;
-        return res.send('<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>');
+        return res.render('notification', {content: '<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
 //register part
 app.get("/register", function (req, res) {
-    fs.readFile('static/web_pages/register.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
+    if(req.session.userId){
+        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
+    else{
+        fs.readFile('static/web_pages/register.html', function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            return res.end();
+        });
+    }
 });
 app.post("/register", async (req, res) => {
     const name = req.body.name; 
     const email = req.body.email;
-    const login = req.body.login; console.log(login);
-    const pw = req.body.password; console.log(pw);
+    const login = req.body.login;
+    const pw = req.body.password;
     const address = req.body.address;
     const ccard = req.body.credit;
     if(!name || !email || !login || !pw || !address || !ccard){
-        res.send('<p> Invalid input. </p> <a href="/register"> Retry </a>');
+        res.render('notification', {content: '<p> Invalid input. </p> <a href="/register"> Retry </a>'});
     }
     else{
         function insertUser(n, e, l, p, a, c){
@@ -160,7 +190,7 @@ app.post("/register", async (req, res) => {
                 db.serialize(function () {
                     db.run("INSERT INTO user (name, email, login, password, address, creditcard) VALUES (?, ?, ?, ?, ?, ?)", [n, e, l, p, a, c], function(err){
                         if(err){return reject(err);}
-                        else{console.log(this.lastID); return resolve(this.lastID);}
+                        else{return resolve(this.lastID);}
                     });
                 })
                 db.close();
@@ -180,21 +210,38 @@ app.post("/register", async (req, res) => {
         }
         var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)});
         req.session.userId = user.id;
-        return res.send('<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>');;
+        return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
 
-//event listener for if the server shuts down?
-/*process.on('SIGINT', () => {
-    db.close();
-    server.close();
-});*/
+app.get("/logout", function (req, res) {
+    if(!req.session.userId){
+        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
+    else{
+        res.render('notification', {content: '<p> Are you sure you want to log out? </p> <br> <a href="/logoutYes"> Yes </a> <br> <a href="/"> No </a>'});
+    }
+});
+
+app.get("/logoutyes", function (req, res, next) {
+    if(req.session.id){
+        req.session.destroy(err => {
+            if(err){
+                return next("Something went wrong when logging out");
+            }
+            else{res.render('notification', {content:'<p> Logout succesful! Go back to the homepage: </p> <a href="/"> Home </a>'})}
+        });
+    }
+    else{
+        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
+});
 
 app.use(function(err, req, res, next){
     if(err.message){
         res.status(500).send("Error: " + err.message);
     }
     else{res.status(500).send('Something has failed!');}
-    
-})
+});
+
 app.listen(8016); //can be visited at http://localhost:8016/web_pages/index.html or http://localhost:8016/css/general.css

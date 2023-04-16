@@ -1,8 +1,8 @@
-//get all the moviescreenings to display on the home page index.html
+//get all the moviescreenings linked with a specific movie here
 fetch("/moviescreenings").then(c => c.json()).then(moviescreenings => {
     console.log(moviescreenings);
 
-    var select = document.getElementsByTagName('select')[0];
+/*    var select = document.getElementsByTagName('select')[0];
     let option = document.createElement('option');  
     option.setAttribute('value', "")
     let text = document.createTextNode("--Select a movie--");
@@ -15,4 +15,5 @@ fetch("/moviescreenings").then(c => c.json()).then(moviescreenings => {
         option.appendChild(text);
         select.appendChild(option);
     }
+*/
 });
