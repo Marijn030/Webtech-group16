@@ -32,10 +32,12 @@ function movieSelected() {//updates the movie in the label with the value of the
 }
 
 var select2 = document.getElementsByTagName('select')[1];//gets the dropdown element in the webpage file for dates
-select2.addEventListener('change', dateSelected, false);
+select2.addEventListener('change', moviescreeningSelected, false);
 
 //event handler for when a moviescreening is selected
-function dateSelected() {//updates the moviescreening in the label with the value of the dropdown item
+function moviescreeningSelected() {//updates the moviescreening in the label with the value of the dropdown item
     let label = document.getElementsByTagName('label')[3];//gets the label that shows the selected moviescreening
     label.innerText = "You selected the moviescreening: " + select2.value;
+    let input = document.getElementById('moviescreeningid');
+    input.value = select2.value;
 }
