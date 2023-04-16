@@ -57,7 +57,7 @@ app.get("/moviescreenings", (req, res) => {
 
 app.get("/profile",  async function (req, res) {
     if(!req.session.userId){
-        res.send('<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>');
+        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>'});
     }
     else{
         function getUserById(userId){
@@ -96,7 +96,7 @@ app.get("/profile",  async function (req, res) {
 
 app.get("/store", function (req, res) {
     if(!req.session.userId){
-        res.send('<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>');
+        res.render('notification', {content : '<p> U are currently not logged in. Press the following link to log in: </p> <a href="/login"> Log in </a>'});
     }
     else{
         fs.readFile('static/web_pages/store.html', function (err, data) {
@@ -147,14 +147,12 @@ app.post("/login", async function(req, res){
         });
     }
     var user = await getUserByLogin(login);
-    console.log(user);
     if(!user || user.password !== password){
-        res.setHeader('Content-type','text/html');
-        return res.send('<p> Incorrect password or username. </p> <a href="/login"> Retry </a>');
+        return res.render('notification', {content: '<p> Incorrect password or username. </p> <a href="/login"> Retry </a>'});
     }
     else{
         req.session.userId = user.id;
-        return res.send('<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>');
+        return res.render('notification', {content: '<p> Login succeeded. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
 //register part
@@ -173,7 +171,7 @@ app.post("/register", async (req, res) => {
     const address = req.body.address;
     const ccard = req.body.credit;
     if(!name || !email || !login || !pw || !address || !ccard){
-        res.send('<p> Invalid input. </p> <a href="/register"> Retry </a>');
+        res.render('notification', {content: '<p> Invalid input. </p> <a href="/register"> Retry </a>'});
     }
     else{
         function insertUser(n, e, l, p, a, c){
@@ -202,26 +200,31 @@ app.post("/register", async (req, res) => {
         }
         var user = await insertUser(name, email, login, pw, address, ccard).then(insertId => {return getUserById(insertId)});
         req.session.userId = user.id;
-        return res.send('<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>');;
+        return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
 
 app.get("/logout", function (req, res) {
     if(!req.session.userId){
-        res.send('<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>');
+        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
     }
     else{
-        res.send('<p> Are you sure you want to log out? </p> <br> <a href="/logoutYes"> Yes </a> <br> <a href="/"> No </a>')
+        res.render('notification', {content: '<p> Are you sure you want to log out? </p> <br> <a href="/logoutYes"> Yes </a> <br> <a href="/"> No </a>'});
     }
 });
 
 app.get("/logoutyes", function (req, res, next) {
-    req.session.destroy(err => {
-        if(err){
-            return next("Something went wrong when logging out");
-        }
-        else{res.send('<p> Logout succesful! Go back to the homepage: </p> <a href="/"> Home </a>')}
-    });
+    if(req.session.id){
+        req.session.destroy(err => {
+            if(err){
+                return next("Something went wrong when logging out");
+            }
+            else{res.render('notification', {content:'<p> Logout succesful! Go back to the homepage: </p> <a href="/"> Home </a>'})}
+        });
+    }
+    else{
+        res.render('notification', {content: '<p> U are currently not logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
 });
 
 app.use(function(err, req, res, next){
