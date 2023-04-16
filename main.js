@@ -1,20 +1,21 @@
+/*This file is where the express app and other middleware come together to receive and handle all the http request. This is the main file
+of our server and connects all other files to each other and makes them work together.
+*/
 //declaring different middlewares to use
-const express = require('express');
-const app = express();
-const morgan = require('morgan');
-const path = require("path");
-const fs = require("fs");
-const url = require('url');
-const sqlite3 = require("sqlite3").verbose();
-const bcrypt = require('bcrypt');
-const session = require('express-session');
-const pug = require("pug");
+const express = require('express');//this variable is required to set up the express app
+const app = express();//this is the express app that we add all other things to
+const morgan = require('morgan');//this is the logger that we will be using
+const path = require("path");//allows us to let the app know where all the information is
+const fs = require("fs");//creates file streams to let us read and write files into/from the app
+const sqlite3 = require("sqlite3").verbose();//allows for app-database communication
+const session = require('express-session'); //manages and creates sessions for us to keep the state of server-client interaction   
+const pug = require("pug");//allows us to read our templates for HTML
 
 //setup for the server beforehand
-const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });// writes files to http communication so the client receives the proper page (interaction)
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(express.urlencoded({extended: false}));
-const staticPath = path.join(__dirname, "/static");
+const staticPath = path.join(__dirname, "/static");//sets our path for all static files
 app.use(express.static(staticPath)); 
 //makes you able to acces static files such as the css/img/js. NOTE: HTML/PUG isn't static because we pull data from DB.
 //However tag-only HTML is considered static, since the tags themselves are consistent.
