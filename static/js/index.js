@@ -1,3 +1,5 @@
+/*this script
+*/
 //first get the next button and add an event listener to it for when it gets clicked
 var next = document.getElementsByTagName('button')[10];
 next.addEventListener("click", nextMovie, false);
