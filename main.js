@@ -109,6 +109,43 @@ app.get("/store", function (req, res) {
     }
 });
 
+//for when a user confirms to buy a ticket for a moviescreening
+app.post("/buyticket", async function (req, res) {
+    var userId = req.session.userId;
+    var screeningId = req.body.moviescreeningid;
+    if (!userId || !screeningId) {
+        res.render('notification', { content: '<p> Something appears to be missing. </p> <a href="/store"> Retry </a>' });
+    }
+    else {
+        function insertOrder(u, s) { //attempts to insert the order into the database
+            const db = new sqlite3.Database("cinema");//opens the database for use
+            return new Promise((resolve, reject) => {
+                db.serialize(function () {//inserts the information into the database
+                    db.run("INSERT INTO orderhistory (user_id, moviescreening_id) VALUES (?, ?)", [u, s], function (err) {
+                        if (err) { return reject(err); }
+                        else { return resolve(this.lastID); }
+                    });
+                })
+                db.close();
+            });
+        }     
+        function getOrderById(orderId) {//gets the user as json object based on the received id
+            const db = new sqlite3.Database("cinema");//opens the database for use
+            return new Promise((resolve, reject) => {
+                db.serialize(function () {//attempts to find the order in the database
+                    db.get("SELECT * FROM orderhistory WHERE orderhistory.id = ?", [orderId], (err, rows) => {
+                        if (err) { return reject(err); }
+                        return resolve(rows); //returns JSON object
+                    });
+                })
+                db.close();
+            })
+        }
+        var order = await insertOrder(userId, screeningId).then(insertId => { return getOrderById(insertId) }); //saves user locally, if the user is successfully inserted into database
+        return res.render('notification', { content: '<p> Your order has been confirmed. </p> <a href="/store"> Go back to the store </a>' });
+    }
+});
+
 //renders each page with the information of the specific movie the user requested to see
 app.get("/clickedmovie/:movId", function (req, res, next) {
         if(!parseInt(req.params.movId, 10)){return(next(new Error("Invalid url.")));}
@@ -219,9 +256,7 @@ app.post("/register", async (req, res) => {
         return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>'});
     }
 });
-app.post("/buyticket", async (req, res) => {
 
-});
 //user suggested they might want to log out, and are asked to confirm that in the page sent to them in the response, if they are logged in
 app.get("/logout", function (req, res) {
     if(!req.session.userId){
