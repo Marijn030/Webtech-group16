@@ -24,7 +24,7 @@
         <form id="register" action="/register" method="post">
             <!--Required info: name, email, username, password, address, credit card-->
             <label form="register" for="client">Name:</label>
-            <input id="client" name="name" type="text" placeholder="John Wick" size="34" required autofocus>
+            <input id="client" name="name" type="text" placeholder="John Wick" pattern="[a-zA-Z ]{3,20}" size="34" required autofocus>
         <br>
             <label form="register" for="email">Email:</label>
             <input id="email" name="email" type="email" placeholder="babayaga@email.com" size="34" required>
@@ -36,7 +36,7 @@
             <input id="pw" name="password" type="password" placeholder="Password" size="31" required>
         <br>
             <label form="register" for="address">Address:</label>
-            <input id="address" name="address" type="text" placeholder="Leuvenlaan 343 3512 JE Utrecht" size="32" required>
+            <input id="address" name="address" type="text" placeholder="Leuvenlaan 343 3512 JE Utrecht" pattern="[a-zA-Z ][a-zA-Z0-9 ]{5,}" size="32" required>
         <br>
             <label form="register" for="credit">Credit Card:</label>
             <input id="credit" name="credit" type="text" placeholder="1111222233334444" size="29" required>
