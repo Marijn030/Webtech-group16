@@ -1,4 +1,5 @@
-doctype html
+doctype htm
+//-The page that shows the user their information contained in the database
 head
   title Cinema Utrecht Profile Page
   meta(charset='UTF-8')
@@ -17,21 +18,28 @@ main
   h3
     | Name
   label #{name}
+  //-this shows the user's name 
   h3
     | Email
   label #{email}
+  //-this shows the user's email
   h3
     | Login
   label #{login}
+  //-this shows the user's login
   h3
     | Password
   label #{password}
+  //-this shows the user's password
   h3
     | Address
   label #{address}
+  //-this shows the user's address
   h3
     | Creditcard
   label #{creditcard}
+  //-this shows the user's credit card number
   h3
     | Order History
   label !{history}
+  //-this shows the user's history in the form of a string with some <br> tags in between, describing the user's orders in the past

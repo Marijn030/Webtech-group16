@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!--this is the register page where the user attempts to register to the database. It has some client-side requirements for the inputs-->
 <head>
     <title>Cinema Utrecht Register Page</title>
     <meta charset="UTF-8">
@@ -22,7 +22,6 @@
         <h2>Register Page</h2>
         <p>Thank you for considering joining us!</p>
         <form id="register" action="/register" method="post">
-            <!--Required info: name, email, username, password, address, credit card-->
             <label form="register" for="client">Name:</label>
             <input id="client" name="name" type="text" placeholder="John Wick" pattern="[a-zA-Z ]{3,20}" size="34" required autofocus>
             <br>
