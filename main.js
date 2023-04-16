@@ -23,19 +23,18 @@ app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(session({secret : "secret"}));
 
-//var db = new sqlite3.Database("cinema");
-
-//adding listening
+//adding listening to http requests
+//this handles the request for the home page
 app.get("/", function(req, res){
-    const {userId} = req.session;
+    const {userId} = req.session;//pulls the session from the request into a local object
     if(!userId) {console.log("currently not logged in")}
-    fs.readFile('static/web_pages/index.html', function(err, data) {
+    fs.readFile('static/web_pages/index.html', function(err, data) {//gives the user the home page
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         return res.end();
     });
 });
-
+//handles the request to see the movies in our database
 app.get("/movies", (req, res) => {
     var db = new sqlite3.Database("cinema");
     db.serialize(function () {
