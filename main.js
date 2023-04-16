@@ -37,7 +37,7 @@ app.get("/", function(req, res){
 app.get("/movies", (req, res) => {
     var db = new sqlite3.Database("cinema");//opens the database for use
     db.serialize(function () {
-        db.all("SELECT title AS title, movie.id AS id FROM moviescreening, movie WHERE movie.id = moviescreening.movie_id AND strftime('%s', 'now') < strftime('%s', datetime)", (err, rows) => {
+        db.all("SELECT title AS title, movie.id AS id FROM moviescreening, movie WHERE movie.id = moviescreening.movie_id AND strftime('%s', 'now') < strftime('%s', datetime);", (err, rows) => {
             res.json(rows);
         });
     });
@@ -48,7 +48,7 @@ app.get("/movies", (req, res) => {
 app.get("/moviescreenings", (req, res) => {
     var db = new sqlite3.Database("cinema");//opens the database for use
     db.serialize(function () {
-        db.all("SELECT moviescreening.id, moviescreening.movie_id, moviescreening.datetime FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime)", (err, rows) => {
+        db.all("SELECT moviescreening.id, moviescreening.movie_id, moviescreening.datetime FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime);", (err, rows) => {
             res.json(rows);
         });
     });
@@ -65,7 +65,7 @@ app.get("/profile",  async function (req, res) {
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {//finds the user in the database
-                    db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
+                    db.get("SELECT * FROM user WHERE user.id = ?;", [userId], (err, rows) => {
                         if(err){ return reject(err);}
                         return resolve(rows); //returns JSON object
                     });
@@ -77,7 +77,7 @@ app.get("/profile",  async function (req, res) {
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {//finds the order history of the user
-                    db.all("SELECT title, datetime FROM orderhistory, moviescreening, movie WHERE orderhistory.user_id = ? AND moviescreening.id = orderhistory.moviescreening_id AND moviescreening.movie_id = movie.id", [userId], (err, rows) => {
+                    db.all("SELECT title, datetime FROM orderhistory, moviescreening, movie WHERE orderhistory.user_id = ? AND moviescreening.id = orderhistory.moviescreening_id AND moviescreening.movie_id = movie.id;", [userId], (err, rows) => {
                         if(err){ return reject(err);}
                         return resolve(rows); //returns JSON object
                     });
@@ -121,7 +121,7 @@ app.post("/buyticket", async function (req, res) {
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {//inserts the information into the database
-                    db.run("INSERT INTO orderhistory (user_id, moviescreening_id) VALUES (?, ?)", [u, s], function (err) {
+                    db.run("INSERT INTO orderhistory (user_id, moviescreening_id) VALUES (?, ?);", [u, s], function (err) {
                         if (err) { return reject(err); }
                         else { return resolve(this.lastID); }
                     });
@@ -133,7 +133,7 @@ app.post("/buyticket", async function (req, res) {
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {//attempts to find the order in the database
-                    db.get("SELECT * FROM orderhistory WHERE orderhistory.id = ?", [orderId], (err, rows) => {
+                    db.get("SELECT * FROM orderhistory WHERE orderhistory.id = ?;", [orderId], (err, rows) => {
                         if (err) { return reject(err); }
                         return resolve(rows); //returns JSON object
                     });
@@ -153,7 +153,7 @@ app.get("/clickedmovie/:movId", function (req, res, next) {
         const db = new sqlite3.Database("cinema");//opens the database for use
         var title, genre, year, director, writer, actor, post, trail, pl;//these save all the information about the movie from the database
         db.serialize(function() {
-            db.get("SELECT * FROM movie WHERE rowid = ?", [movId], (err, rows) => {//inputs the one/zero result(s) for the movie requested into the page that displays the information
+            db.get("SELECT * FROM movie WHERE rowid = ?;", [movId], (err, rows) => {//inputs the one/zero result(s) for the movie requested into the page that displays the information
                 if(err){next(new Error("Fetching from database failed."));}
                 else if(!rows){next(new Error("Movie wasn't found in database."));}
                 else{title = rows.title; genre = rows.genre; year = rows.year; director = rows.director; writer = rows.writer; actor = rows.actor; post = rows.poster; trail = rows.trailer; pl = rows.plot;
@@ -185,7 +185,7 @@ app.post("/login", async function(req, res){
         const db = new sqlite3.Database("cinema");//opens the database for use
         return new Promise((resolve, reject) => {
             db.serialize(function () {
-                db.get("SELECT * FROM user WHERE user.login = ?", [login], (err, rows) => {//try to find user by given login
+                db.get("SELECT * FROM user WHERE user.login = ?;", [login], (err, rows) => {//try to find user by given login
                     if(err){ return reject(err);}
                     return resolve(rows); //returns JSON object
                 });
@@ -231,7 +231,7 @@ app.post("/register", async (req, res) => {
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {//inserts the information into the database
-                    db.run("INSERT INTO user (name, email, login, password, address, creditcard) VALUES (?, ?, ?, ?, ?, ?)", [n, e, l, p, a, c], function(err){
+                    db.run("INSERT INTO user (name, email, login, password, address, creditcard) VALUES (?, ?, ?, ?, ?, ?);", [n, e, l, p, a, c], function(err){
                         if(err){return reject(err);}
                         else{return resolve(this.lastID);}
                     });
@@ -243,7 +243,7 @@ app.post("/register", async (req, res) => {
             const db = new sqlite3.Database("cinema");//opens the database for use
             return new Promise((resolve, reject) => {
                 db.serialize(function () {//attempts to find the user in the database
-                    db.get("SELECT * FROM user WHERE user.id = ?", [userId], (err, rows) => {
+                    db.get("SELECT * FROM user WHERE user.id = ?;", [userId], (err, rows) => {
                         if(err){ return reject(err);}
                         return resolve(rows); //returns JSON object
                     });
