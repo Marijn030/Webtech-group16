@@ -125,11 +125,16 @@ app.get("/clickedmovie/:movid", function (req, res, next) {
 });
 //login part
 app.get("/login", function (req, res) {
-    fs.readFile('static/web_pages/login.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
+    if(req.session.userId){
+        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
+    else{
+        fs.readFile('static/web_pages/login.html', function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            return res.end();
+        });
+    }
 });
 app.post("/login", async function(req, res){
     const password = req.body.password;
@@ -157,11 +162,16 @@ app.post("/login", async function(req, res){
 });
 //register part
 app.get("/register", function (req, res) {
-    fs.readFile('static/web_pages/register.html', function (err, data) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(data);
-        return res.end();
-    });
+    if(req.session.userId){
+        return res.render('notification', {content : '<p> U are already logged in. Press the following link to go back: </p> <a href="/"> Home </a>'});
+    }
+    else{
+        fs.readFile('static/web_pages/register.html', function (err, data) {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write(data);
+            return res.end();
+        });
+    }
 });
 app.post("/register", async (req, res) => {
     const name = req.body.name; 
