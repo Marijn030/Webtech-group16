@@ -13,6 +13,10 @@ function movieSelected() {//updates the movie in the label with the value of the
     fetch("/moviescreenings").then(c => c.json()).then(moviescreenings => {  
         var select2 = document.getElementsByTagName('select')[1];
 
+        for (let i = 0; i < select2.length; i++) {
+            select2.remove(i);
+        }
+
         let option = document.createElement('option');
         option.setAttribute('value', "")
         let text = document.createTextNode("--Select a moviescreening--");
