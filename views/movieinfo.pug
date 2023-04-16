@@ -29,7 +29,17 @@ script.
   generalInfo.appendChild(document.createElement('br'));
   generalInfo.appendChild(document.createTextNode("Director of the movie: " + "#{moviedirector}" + ".")); //!!!
   generalInfo.appendChild(document.createElement('br'));
-  generalInfo.appendChild(document.createTextNode("Writer of the movie: " + "#{moviewriter}" + ".")); //!!!
+  let Writerdata = "Writer: "
+  let writerlist = "#{moviewriter}"
+  let writers = writerlist.split("-")
+  if(writers.length > 1) {
+  WriterData = "Writers: "	
+  }
+  for(i = 0; i < writers.length - 1; i++){
+  Writerdata += writers[i] + ", ";
+  }
+  Writerdata += writers[writers.length - 1] + ".";
+  generalInfo.appendChild(document.createTextNode(Writerdata));
   generalInfo.appendChild(document.createElement('br'));
   let Actordata = "Actors: ";
   let actorlist = "#{actors}"
