@@ -27,7 +27,6 @@ app.use(session({secret : "secret"}));
 //this handles the request for the home page
 app.get("/", function(req, res){
     const {userId} = req.session;//pulls the session from the request into a local object with the (possible) userId
-    if(!userId) {console.log("currently not logged in")}
     fs.readFile('static/web_pages/index.html', function(err, data) {//gives the user the home page
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
