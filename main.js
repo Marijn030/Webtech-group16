@@ -46,11 +46,10 @@ app.get("/movies", (req, res) => {
 });
 
 //??
-app.post("/moviescreenings", (req, res) => {
-    var selectedMovieId = req.body.id;//
+app.get("/moviescreenings", (req, res) => {
     var db = new sqlite3.Database("cinema");//opens the database for use
     db.serialize(function () {
-        db.all("SELECT moviescreening.datetime FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime) AND moviescreening.movie_id = ?", [selectedMovieId], (err, rows) => {
+        db.all("SELECT moviescreening.id, moviescreening.movie_id, moviescreening.datetime FROM moviescreening WHERE strftime('%s', 'now') < strftime('%s', moviescreening.datetime)", (err, rows) => {
             res.json(rows);
         });
     });
@@ -220,6 +219,9 @@ app.post("/register", async (req, res) => {
         req.session.userId = user.id;//the user's id is saved into the session
         return res.render('notification', {content: '<p> Account has been registered and u have been logged in. </p> <a href="/"> Go back to homepage </a>'});
     }
+});
+app.post("/buyticket", async (req, res) => {
+
 });
 //user suggested they might want to log out, and are asked to confirm that in the page sent to them in the response, if they are logged in
 app.get("/logout", function (req, res) {

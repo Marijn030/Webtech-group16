@@ -13,11 +13,11 @@
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
     <link rel="stylesheet" href="../css/general.css">
     <script src="../js/nav.js" defer></script>
-    <script src="../js/moviescreenings.js"></script>
     <script src="../js/store.js" defer></script>
+    <script src="../js/currentmovies.js"></script>
 </head>
 <body>
-    <main>           
+    <main>
         <header>
             <h1>Cinema Utrecht Store</h1>
         </header>
@@ -26,19 +26,22 @@
             Ticket Sale
         </h2>
         <p>
-            <label for="movie-select">Choose a movie you want to watch:</label>
-            <select name="moviescreenings" id="movie-select">
+            <label for="movieSelect">Choose a movie you want to watch:</label>
+            <select name="movies" id="movieSelect">
+            </select>
+        </p>
+        <p>
+            <label>You selected the movie: </label>
+        </p>
+        <p>
+            <label for="dateSelect">Choose a date for the movie you want to watch:</label>
+            <select form="submit" name="dates" id="dateSelect">
             </select>
         </p>
         <p>
             <label>You selected the moviescreening: </label>
         </p>
-        <p>
-            <label for="date-select">Choose a date for the movie you want to watch:</label>
-            <select form="submit-choice" name="dates" id="date-select">
-            </select>
-        </p>
-        <form id="submit-choice">     
+        <form id="submit" action="/buyticket" method="post">
             <input type="submit">
         </form>
     </main>
