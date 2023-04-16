@@ -115,7 +115,7 @@ app.get("/store", function (req, res) {
 app.get("/clickedmovie/:movId", function (req, res, next) {
         if(!parseInt(req.params.movId, 10)){return(next(new Error("Invalid url.")));}
         var movId = parseInt(req.params.movId, 10);//the id of the movie the user wants to investigate
-    const db = new sqlite3.Database("cinema");//opens the database for use
+        const db = new sqlite3.Database("cinema");//opens the database for use
         var title, genre, year, director, writer, actor, post, trail, pl;//these save all the information about the movie from the database
         db.serialize(function() {
             db.get("SELECT * FROM movie WHERE rowid = ?", [movId], (err, rows) => {//inputs the one/zero result(s) for the movie requested into the page that displays the information
