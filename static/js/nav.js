@@ -14,11 +14,11 @@ function createli(link, name, optionalClass) {//takes a link, the text for the l
 let nav = document.getElementsByTagName('nav')[0];//locally stores the nav element in the webpage file
 let ul = document.createElement('ul'); //an unordered list element to add all the different links to in the nav bar 
 //Links around the site
-let home = createli('/', 'Home', null);//creates the element that links to the home page
-let store = createli('/store', 'Buy ticket', null);//creates the element that links to the store page
-let profile = createli('/profile', 'Profile', null);//creates the element that links to profile page
-let logout = createli('/logout', 'Logout', null);//creates the element that links to logging out
-let login = createli('/login', 'Login/Register', null);//creates the element that links to the login page
+let home = createli('/group16', 'Home', null);//creates the element that links to the home page
+let store = createli('/group16/store', 'Buy ticket', null);//creates the element that links to the store page
+let profile = createli('/group16/profile', 'Profile', null);//creates the element that links to profile page
+let logout = createli('/group16/logout', 'Logout', null);//creates the element that links to logging out
+let login = createli('/group16/login', 'Login/Register', null);//creates the element that links to the login page
 logout.style.cssFloat = 'right';
 login.style.cssFloat = 'right';
 //add them to the tree
