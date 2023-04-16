@@ -16,12 +16,12 @@ fetch("/movies").then(c => c.json()).then(movies => {
 
     h3.innerText = "Set " + currentSet + " of " + totalSets;
 
-    var increment = currentSet - 1;//
-    var begin = 0 + 10 * increment;//
+    var increment = currentSet - 1;//saves difference between first set and current set  
+    var begin = 0 + 10 * increment;//the number associated with the first movie that needs to be displayed, in increments of 10 (e.g. 0, 10, 20 then 30, etc) 
 
-    var labels = document.getElementsByTagName('label');
-    var buttons = document.getElementsByTagName('button');
-    for (let i = begin; i < begin+10; i++) {
+    var labels = document.getElementsByTagName('label');//array with all the label elements, on which the names of the displayed on the page
+    var buttons = document.getElementsByTagName('button');//buttons which will lead to a page with the information for each of the displayed movies 
+    for (let i = begin; i < begin+10; i++) {//counter variable
         if(movies[i]){
             labels[i%10].innerText = "Movie " + (i+1);
             buttons[i % 10].innerText = movies[i].title;
