@@ -1,5 +1,5 @@
 //This script loads all movies into the dropdown in store.html
-fetch("/group16/movies").then(c => c.json()).then(movies => {
+fetch("/movies").then(c => c.json()).then(movies => {
     var select = document.getElementsByTagName('select')[0];//the dropdown on the store page for movies 
 
     let option = document.createElement('option');//first option that is shown in the dropdown

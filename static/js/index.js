@@ -25,7 +25,7 @@ function nextMovie() {//this loads the next set of movies by increasing the 'ran
 
 //a help function to update the page when the next button is clicked
 function updatePage() {
-    fetch("/group16/movies").then(c => c.json()).then(movies => {
+    fetch("/movies").then(c => c.json()).then(movies => {
         console.log(movies);
 
         var h3 = document.getElementsByTagName('h3')[0];//the header that tells the user what set they are on (which 10 movies)

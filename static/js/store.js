@@ -10,7 +10,7 @@ function movieSelected() {//updates the movie in the label with the value of the
     let label = document.getElementsByTagName('label')[1];//gets the label that shows the selected movie
     label.innerText = "You selected the movie: " + select.value;
 
-    fetch("/group16/moviescreenings").then(c => c.json()).then(moviescreenings => {  
+    fetch("/moviescreenings").then(c => c.json()).then(moviescreenings => {  
         var select2 = document.getElementsByTagName('select')[1];
         const length = select2.length-1;
         for (let i = length; i >= 0; i--) {
